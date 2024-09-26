@@ -1,6 +1,6 @@
 import {createHandler} from "@premieroctet/next-admin/appHandler";
 import schema from "../../../../../prisma/json-schema/json-schema.json";
-import prisma from "../../../../../prisma/lib/prisma";
+import {prisma} from "../../../../../prisma/lib/prisma";
 import {options} from "@/nextAdmin/options";
 import {isGranted} from "@/utils/auth";
 import {Role} from "@/types/role";

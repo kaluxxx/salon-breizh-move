@@ -2,7 +2,7 @@ import {NextAdminOptions} from "@premieroctet/next-admin";
 import {sendEmail} from "@/utils/email";
 import {isGranted} from "@/utils/auth";
 import {NextRequest} from "next/server";
-import prisma from "../../prisma/lib/prisma";
+import {prisma} from "../../prisma/lib/prisma";
 import {Role} from "@/types/role";
 
 export const options: NextAdminOptions = {

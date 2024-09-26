@@ -2,7 +2,7 @@ import EmailProvider from "next-auth/providers/email";
 import {sendVerificationRequest} from "@/utils/email";
 import {NextAuthOptions} from "next-auth";
 import {PrismaAdapter} from "@next-auth/prisma-adapter";
-import prisma from "../../prisma/lib/prisma";
+import {prisma} from "../../prisma/lib/prisma";
 import {User} from "@/types/user";
 import {CustomSession} from "@/types/session";
 
