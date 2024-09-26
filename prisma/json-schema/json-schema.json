@@ -1,0 +1,629 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string",
+          "default": "USER",
+          "enum": [
+            "ADMIN",
+            "MODERATOR",
+            "USER"
+          ]
+        },
+        "emailVerified": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "accounts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Account"
+          }
+        },
+        "sessions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Session"
+          }
+        }
+      },
+      "required": [
+        "email"
+      ]
+    },
+    "Account": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "provider": {
+          "type": "string"
+        },
+        "providerAccountId": {
+          "type": "string"
+        },
+        "refresh_token": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "access_token": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "expires_at": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "token_type": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "scope": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "id_token": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "session_state": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "user": {
+          "$ref": "#/definitions/User"
+        }
+      },
+      "required": [
+        "userId",
+        "type",
+        "provider",
+        "providerAccountId"
+      ]
+    },
+    "Session": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "sessionToken": {
+          "type": "string"
+        },
+        "expires": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "user": {
+          "$ref": "#/definitions/User"
+        }
+      },
+      "required": [
+        "sessionToken",
+        "userId",
+        "expires"
+      ]
+    },
+    "VerificationToken": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        },
+        "expires": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "identifier",
+        "token",
+        "expires"
+      ]
+    },
+    "Person": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "civility": {
+          "type": "string",
+          "enum": [
+            "MR",
+            "MRS"
+          ]
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "phone": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "email": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "exhibitorsCompanyManager": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Exhibitor"
+          }
+        },
+        "exhibitorsStandManager": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Exhibitor"
+          }
+        },
+        "exhibitorsOnSiteContact": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Exhibitor"
+          }
+        }
+      },
+      "required": [
+        "civility",
+        "firstName",
+        "lastName"
+      ]
+    },
+    "Address": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "additionalAddress": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "postalCode": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "exhibitors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Exhibitor"
+          }
+        },
+        "billingExhibitors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Exhibitor"
+          }
+        },
+        "showGuides": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ShowGuide"
+          }
+        }
+      },
+      "required": [
+        "address",
+        "postalCode",
+        "city",
+        "email",
+        "phone"
+      ]
+    },
+    "Exhibitor": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "companyName": {
+          "type": "string"
+        },
+        "address": {
+          "$ref": "#/definitions/Address"
+        },
+        "billingAddress": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Address"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "siret": {
+          "type": "string"
+        },
+        "apeCode": {
+          "type": "string"
+        },
+        "tvaNumber": {
+          "type": "string"
+        },
+        "companyManager": {
+          "$ref": "#/definitions/Person"
+        },
+        "standManager": {
+          "$ref": "#/definitions/Person"
+        },
+        "onSiteContact": {
+          "$ref": "#/definitions/Person"
+        },
+        "showGuide": {
+          "$ref": "#/definitions/ShowGuide"
+        },
+        "closeTo": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "awayFrom": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "comments": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "nbCoExhibitors": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "coExhibitors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CoExhibitor"
+          }
+        },
+        "registrationFees": {
+          "type": "number"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "Event": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Event"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "companyName",
+        "addressId",
+        "siret",
+        "apeCode",
+        "tvaNumber",
+        "companyManagerId",
+        "standManagerId",
+        "onSiteContactId",
+        "showGuideId",
+        "registrationFees",
+        "updatedAt"
+      ]
+    },
+    "ShowGuide": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "companyName": {
+          "type": "string"
+        },
+        "address": {
+          "$ref": "#/definitions/Address"
+        },
+        "thematics": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Thematic"
+          }
+        },
+        "businessDescription": {
+          "type": "string"
+        },
+        "website": {
+          "type": "string"
+        },
+        "Exhibitor": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Exhibitor"
+          }
+        }
+      },
+      "required": [
+        "companyName",
+        "addressId",
+        "businessDescription",
+        "website"
+      ]
+    },
+    "CoExhibitor": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "companyName": {
+          "type": "string"
+        },
+        "exhibitor": {
+          "$ref": "#/definitions/Exhibitor"
+        }
+      },
+      "required": [
+        "companyName",
+        "exhibitorId"
+      ]
+    },
+    "Thematic": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "showGuides": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ShowGuide"
+          }
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "Stand": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "variants": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/StandVariant"
+          }
+        }
+      },
+      "required": [
+        "type"
+      ]
+    },
+    "StandVariant": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "price": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "minSize": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "maxSize": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "size": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "stand": {
+          "$ref": "#/definitions/Stand"
+        }
+      },
+      "required": [
+        "name",
+        "description",
+        "standId"
+      ]
+    },
+    "Event": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/EventType"
+        },
+        "date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "startHour": {
+          "type": "string"
+        },
+        "endHour": {
+          "type": "string"
+        },
+        "location": {
+          "type": "string"
+        },
+        "exhibitors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Exhibitor"
+          }
+        }
+      },
+      "required": [
+        "name",
+        "description",
+        "typeId",
+        "date",
+        "startHour",
+        "endHour",
+        "location"
+      ]
+    },
+    "EventType": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "Event": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Event"
+          }
+        }
+      },
+      "required": [
+        "name"
+      ]
+    }
+  },
+  "type": "object",
+  "properties": {
+    "user": {
+      "$ref": "#/definitions/User"
+    },
+    "account": {
+      "$ref": "#/definitions/Account"
+    },
+    "session": {
+      "$ref": "#/definitions/Session"
+    },
+    "verificationToken": {
+      "$ref": "#/definitions/VerificationToken"
+    },
+    "person": {
+      "$ref": "#/definitions/Person"
+    },
+    "address": {
+      "$ref": "#/definitions/Address"
+    },
+    "exhibitor": {
+      "$ref": "#/definitions/Exhibitor"
+    },
+    "showGuide": {
+      "$ref": "#/definitions/ShowGuide"
+    },
+    "coExhibitor": {
+      "$ref": "#/definitions/CoExhibitor"
+    },
+    "thematic": {
+      "$ref": "#/definitions/Thematic"
+    },
+    "stand": {
+      "$ref": "#/definitions/Stand"
+    },
+    "standVariant": {
+      "$ref": "#/definitions/StandVariant"
+    },
+    "event": {
+      "$ref": "#/definitions/Event"
+    },
+    "eventType": {
+      "$ref": "#/definitions/EventType"
+    }
+  }
+}

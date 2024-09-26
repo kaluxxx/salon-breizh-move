@@ -1,0 +1,213 @@
+// schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator jsonSchema {
+  provider              = "prisma-json-schema-generator"
+  includeRequiredFields = "true"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+}
+
+enum Role {
+  ADMIN
+  MODERATOR
+  USER
+}
+
+enum Civility {
+  MR
+  MRS
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  role          Role      @default(USER)
+  emailVerified DateTime?
+  accounts      Account[]
+  sessions      Session[]
+
+  @@map("users")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String  @map("user_id")
+  type              String
+  provider          String
+  providerAccountId String  @map("provider_account_id")
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique @map("session_token")
+  userId       String   @map("user_id")
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verificationtokens")
+}
+
+model Person {
+  id                       String      @id @default(cuid())
+  civility                 Civility
+  firstName                String
+  lastName                 String
+  phone                    String?
+  email                    String?
+  exhibitorsCompanyManager Exhibitor[] @relation("CompanyManager")
+  exhibitorsStandManager   Exhibitor[] @relation("StandManager")
+  exhibitorsOnSiteContact  Exhibitor[] @relation("OnSiteContact")
+
+  @@map("persons")
+}
+
+model Address {
+  id                String      @id @default(cuid())
+  address           String
+  additionalAddress String?
+  postalCode        String
+  city              String
+  email             String
+  phone             String
+  exhibitors        Exhibitor[] @relation("ExhibitorAddress")
+  billingExhibitors Exhibitor[] @relation("ExhibitorBillingAddress")
+  showGuides        ShowGuide[] @relation("ExhibitorShowGuideAddress")
+
+  @@map("addresses")
+}
+
+model Exhibitor {
+  id               String        @id @default(cuid())
+  companyName      String
+  address          Address       @relation("ExhibitorAddress", fields: [addressId], references: [id])
+  addressId        String
+  billingAddress   Address?      @relation("ExhibitorBillingAddress", fields: [billingAddressId], references: [id])
+  billingAddressId String?
+  siret            String
+  apeCode          String
+  tvaNumber        String
+  companyManager   Person        @relation("CompanyManager", fields: [companyManagerId], references: [id])
+  companyManagerId String
+  standManager     Person        @relation("StandManager", fields: [standManagerId], references: [id])
+  standManagerId   String
+  onSiteContact    Person        @relation("OnSiteContact", fields: [onSiteContactId], references: [id])
+  onSiteContactId  String
+  showGuide        ShowGuide     @relation(fields: [showGuideId], references: [id])
+  showGuideId      String
+  closeTo          String?
+  awayFrom         String?
+  comments         String?
+  nbCoExhibitors   Int?
+  coExhibitors     CoExhibitor[]
+  registrationFees Float
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+  Event            Event?        @relation(fields: [eventId], references: [id])
+  eventId          String?
+
+  @@map("exhibitors")
+}
+
+model ShowGuide {
+  id                  String      @id @default(cuid())
+  companyName         String
+  address             Address     @relation("ExhibitorShowGuideAddress", fields: [addressId], references: [id])
+  addressId           String
+  thematics           Thematic[]  @relation("ShowGuideThematics")
+  businessDescription String
+  website             String
+  Exhibitor           Exhibitor[]
+
+  @@map("showguides")
+}
+
+model CoExhibitor {
+  id          String    @id @default(cuid())
+  companyName String
+  exhibitor   Exhibitor @relation(fields: [exhibitorId], references: [id])
+  exhibitorId String
+
+  @@map("coexhibitors")
+}
+
+model Thematic {
+  id         String      @id @default(cuid())
+  name       String
+  showGuides ShowGuide[] @relation("ShowGuideThematics")
+
+  @@map("thematics")
+}
+
+model Stand {
+  id       String         @id @default(cuid())
+  type     String
+  variants StandVariant[] @relation("StandVariants")
+
+  @@map("stands")
+}
+
+model StandVariant {
+  id          String @id @default(cuid())
+  name        String
+  description String
+  price       Float?
+  minSize     Float?
+  maxSize     Float?
+  size        Float?
+  standId     String
+  stand       Stand  @relation("StandVariants", fields: [standId], references: [id])
+
+  @@map("stand_variants")
+}
+
+model Event {
+  id          String      @id @default(cuid())
+  name        String
+  description String
+  type        EventType   @relation(fields: [typeId], references: [id])
+  typeId      String
+  date        DateTime
+  startHour   String
+  endHour     String
+  location    String
+  exhibitors  Exhibitor[]
+
+  @@map("events")
+}
+
+model EventType {
+  id    String  @id @default(cuid())
+  name  String
+  Event Event[]
+
+  @@map("eventtypes")
+}
