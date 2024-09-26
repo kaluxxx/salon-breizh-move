@@ -4,8 +4,7 @@ import schema from "../../../../prisma/json-schema/json-schema.json";
 import {nextAdminTranslations} from "../../../../translation/translation";
 import prisma from "../../../../prisma/lib/prisma";
 import {options} from "@/nextAdmin/options";
-import {getServerSession} from "next-auth";
-import {authOptions} from "@/utils/authOptions";
+
 
 export default async function AdminPage({
                                             params,
@@ -21,20 +20,11 @@ export default async function AdminPage({
         options,
     });
 
-    const session = await getServerSession(authOptions);
-    if (!session?.user?.email) {
-        return {
-            redirect: {
-                destination: "/signin",
-                permanent: false,
-            },
-        };
-    }
     return <NextAdmin
         {...props}
         user={{
             data: {
-                name: session.user.email,
+                name: "Admin",
             },
             logout: "/api/auth/signout",
         }}
