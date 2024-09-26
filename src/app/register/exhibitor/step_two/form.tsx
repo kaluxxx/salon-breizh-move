@@ -57,6 +57,7 @@ export default function StepTwoForm() {
     }
 
     function onSubmit(values: CartFormValues) {
+        formContext.updateRegistrationData({cart: {...values, total: calculateTotalPrice()}});
         router.push("/register/exhibitor/confirmation");
     }
 
@@ -76,11 +77,7 @@ export default function StepTwoForm() {
             formContext.updateRegistrationData({cart: {...form.getValues(), total}});
         });
         return () => subscription.unsubscribe();
-    }, [form, data]);
-
-    useEffect(() => {
-
-    }, [form.getValues()]);
+    }, [form, data, formContext, calculateTotalPrice]);
 
     return (
         <Form {...form}>

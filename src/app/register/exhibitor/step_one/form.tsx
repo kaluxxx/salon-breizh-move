@@ -89,7 +89,7 @@ export default function StepOneForm() {
             email: "",
             phone: ""
         });
-    }, [isBillingAddressSame]);
+    }, [isBillingAddressSame, form]);
 
     useEffect(() => {
         const errors = form.formState.errors;
@@ -108,7 +108,7 @@ export default function StepOneForm() {
             }
         }
 
-    }, [form.formState.errors?.coExhibitors]);
+    }, [form, form.formState.errors?.coExhibitors]);
 
     function onSubmit(values: ExhibitorFormValues) {
         formContext.updateRegistrationData({exhibitor: values});

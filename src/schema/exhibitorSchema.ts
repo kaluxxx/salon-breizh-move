@@ -32,7 +32,8 @@ export const ExhibitorSchema = z.object({
         .min(1, {message: "Veuillez indiquer si vous avez des co-exposants"}),
     coExhibitors: z.array(
         z.object({
-            companyName: z.string().min(1, {message: "Le nom de l'entreprise ne peut pas être vide"}),
+            companyName: z.string()
+                .min(1, {message: "Le nom de l'entreprise ne peut pas être vide"}),
         })
     ).max(3, {message: "Vous ne pouvez pas ajouter plus de 3 co-exposants"})
         .optional(),
