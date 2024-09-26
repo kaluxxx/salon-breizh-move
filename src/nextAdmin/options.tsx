@@ -103,7 +103,7 @@ export const options: NextAdminOptions = {
                             }
                             return data;
                         },
-                        afterDb: async function (data, mode, request) {
+                        afterDb: async function (data, mode) {
                             if (mode === "create") {
                                 await sendEmail({
                                     to: data.data.email,

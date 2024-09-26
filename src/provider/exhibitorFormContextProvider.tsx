@@ -1,6 +1,5 @@
 "use client";
-
-import React, {useState, createContext, ReactNode, useMemo, useEffect} from "react";
+import React, {useState, createContext, ReactNode, useMemo, useCallback} from "react";
 import {Exhibitor} from "@/types/exhibitor";
 import {Cart} from "@/types/cart";
 
@@ -22,15 +21,14 @@ export const ExhibitorRegistrationFormContext = createContext<ExhibitorRegistrat
 export function ExhibitorRegistrationFormContextProvider({ children }: Readonly<ExhibitorRegistrationFormContextProps>) {
     const [exhibitorRegistration, setExhibitorRegistration] = useState<ExhibitorRegistration | null>(null);
 
-    const updateRegistrationData = (values: Partial<ExhibitorRegistration>) => {
-        setExhibitorRegistration({ ...exhibitorRegistration, ...values });
-    };
+    const updateRegistrationData = useCallback((values: Partial<ExhibitorRegistration>) => {
+        setExhibitorRegistration((prev) => ({ ...prev, ...values }));
+    }, []);
 
     const contextValue = useMemo(() => ({
         exhibitorRegistration,
         updateRegistrationData,
     }), [exhibitorRegistration, updateRegistrationData]);
-
 
     return (
         <ExhibitorRegistrationFormContext.Provider value={contextValue}>

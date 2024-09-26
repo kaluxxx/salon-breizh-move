@@ -17,7 +17,7 @@ import {Separator} from "@/components/ui/separator";
 import {Table, TableHead, TableBody, TableHeader, TableRow, TableCell} from "@/components/ui/table";
 import {Button} from "@/components/ui/button";
 import {Input} from "@/components/ui/input";
-import {ChangeEvent, useEffect} from "react";
+import {ChangeEvent, useCallback, useEffect} from "react";
 
 const FEE_PER_EXHIBITOR = 250;
 
@@ -40,7 +40,7 @@ export default function StepTwoForm() {
         return DOMPurify.sanitize(html.replace(/<br\s*\/?>/gi, ''));
     }
 
-    function calculateTotalPrice() {
+    const calculateTotalPrice = useCallback(() => {
         const variants = form.getValues().variants || [];
         const variantsTotal = variants.reduce((total, variant) => {
             const price = variant.price ?? 0;
@@ -49,7 +49,7 @@ export default function StepTwoForm() {
         }, 0);
         const fees = form.getValues().fees || 0;
         return variantsTotal + fees;
-    }
+    }, [form]);
 
     function updateRegistrationFees(event: ChangeEvent<HTMLInputElement>) {
         const fees = parseInt(event.target.value, 10) * FEE_PER_EXHIBITOR;

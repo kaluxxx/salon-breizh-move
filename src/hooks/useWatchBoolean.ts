@@ -16,11 +16,11 @@ const useWatchBoolean = (
             setState(false);
         }
 
-    }, [watchField]);
+    }, [watchField, setState, trueValue, falseValue]);
 
     useEffect(() => {
         callback && callback(state);
-    }, [state]);
+    }, [state, callback]);
 };
 
 export default useWatchBoolean;
