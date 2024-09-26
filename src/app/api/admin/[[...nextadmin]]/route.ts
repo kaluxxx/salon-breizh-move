@@ -11,7 +11,7 @@ const { run } = createHandler({
     prisma,
     schema,
     options,
-    onRequest: async (req, res) => {
+    onRequest: async (req) => {
         if (!(await isGranted(req, [Role.ADMIN, Role.MODERATOR]))) {
             return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
         }

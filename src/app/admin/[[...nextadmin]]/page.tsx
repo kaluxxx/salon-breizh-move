@@ -22,11 +22,19 @@ export default async function AdminPage({
     });
 
     const session = await getServerSession(authOptions);
+    if (!session?.user?.email) {
+        return {
+            redirect: {
+                destination: "/signin",
+                permanent: false,
+            },
+        };
+    }
     return <NextAdmin
         {...props}
         user={{
             data: {
-                name: session?.user?.email!,
+                name: session.user.email,
             },
             logout: "/api/auth/signout",
         }}

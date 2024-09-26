@@ -5,6 +5,7 @@ import {sendVerificationRequest} from "@/utils/email";
 import {User} from "@/types/user";
 import {CustomSession} from "@/types/session";
 import prisma from "../../../../../prisma/lib/prisma";
+import {NextApiRequest, NextApiResponse} from "next";
 
 const providers = [
     EmailProvider({
@@ -32,7 +33,7 @@ export const authOptions: NextAuthOptions = {
         signIn: "/signin",
     },
     callbacks: {
-        async signIn({ user, account, email }) {
+        async signIn({ user }) {
             const userExists = await prisma.user.findFirst({
                 where: { email: user.email! },
             });
@@ -61,7 +62,7 @@ export const authOptions: NextAuthOptions = {
 };
 
 
-const authHandler = async (req: any, res: any) => {
+const authHandler = async (req: NextApiRequest, res: NextApiResponse) => {
     return await NextAuth(req, res, authOptions);
 };
 
