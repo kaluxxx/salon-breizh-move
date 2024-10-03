@@ -69,7 +69,7 @@ export default function StepOneForm() {
 
     const addressFields = form.watch(["address.address", "address.postalCode", "address.city", "address.email", "address.phone"]);
     const isAddressComplete = Object.values(addressFields).every(Boolean);
-
+    const hasCoExhibitors = form.watch("hasCoExhibitors");
     useWatchBoolean(() => form.watch("isSameBillingAddress"), setIsBillingAddressSame, "true", "false");
     useWatchBoolean(() => form.watch("hasSpecialRequest"), setHasSpecialRequest, "yes", "no");
     useWatchBoolean(() => form.watch("hasCoExhibitors"), setHasCoExhibitor, "yes", "no");
@@ -91,7 +91,7 @@ export default function StepOneForm() {
         } else {
             fields.forEach((_, index) => remove(index));
         }
-    }, [form.watch("hasCoExhibitors")]);
+    }, [hasCoExhibitors, append, remove, fields]);
 
     useEffect(() => {
         const errors = form.formState.errors;
@@ -110,7 +110,7 @@ export default function StepOneForm() {
             }
         }
 
-    }, [form.formState.errors?.coExhibitors]);
+    }, [form, form.formState.errors?.coExhibitors]);
 
     function onSubmit(values: ExhibitorFormValues) {
         formContext.updateRegistrationData({exhibitor: values});

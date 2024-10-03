@@ -12,19 +12,17 @@ type ExtendedProps = ClientActionDialogContentProps<"Exhibitor">;
 
 
 const UserDetailsDialog = ({data, onClose}: ExtendedProps) => {
-    const [showGuide, setShowGuide] = useState<ShowGuide | null>(null);
+    const [showGuide] = useState<ShowGuide | null>(null);
 
     useEffect(() => {
         if (!data) return;
         console.log("data", data);
         const getShowGuide = async (id: string) => {
             return await getShowGuideById(id);
-            // setShowGuide(showGuide);
         }
 
-        getShowGuide(data?.[0]?.showGuideId as string).then((showGuide) => {
+        getShowGuide(data?.[0]?.showGuideId).then((showGuide) => {
             console.log("showGuide", showGuide);
-            // setShowGuide(showGuide?.[0]);
         });
     }, [data]);
 

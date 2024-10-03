@@ -3,7 +3,7 @@
 import { prisma } from "../../../prisma/lib/prisma";
 import { ExhibitorSchema } from "@/schema/exhibitorSchema"; // Typage à partir de votre schema
 import { CartSchema } from "@/schema/cartSchema";
-import { Civility, Prisma } from "@prisma/client";
+import { Civility } from "@prisma/client";
 import {Exhibitor} from "@/types/exhibitor";
 import {Cart} from "@/types/cart";
 
@@ -29,7 +29,7 @@ export async function preRegister({ exhibitor, cart }: {
     try {
         await createExhibitor(parsedExhibitor.data, parsedCart.data);
     } catch (e) {
-        return { message: "Une erreur est survenue lors de l'inscription de l'exposant" };
+        return { message: `Une erreur est survenue lors de l'inscription de l'exposant : ${e}` };
     }
 
     return { message: "Votre inscription a bien été enregistrée" };
