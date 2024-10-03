@@ -325,20 +325,11 @@
             "null"
           ]
         },
-        "nbCoExhibitors": {
-          "type": [
-            "integer",
-            "null"
-          ]
-        },
         "coExhibitors": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/CoExhibitor"
           }
-        },
-        "registrationFees": {
-          "type": "number"
         },
         "createdAt": {
           "type": "string",
@@ -357,6 +348,16 @@
               "type": "null"
             }
           ]
+        },
+        "cart": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Cart"
+            },
+            {
+              "type": "null"
+            }
+          ]
         }
       },
       "required": [
@@ -369,8 +370,65 @@
         "standManagerId",
         "onSiteContactId",
         "showGuideId",
-        "registrationFees",
         "updatedAt"
+      ]
+    },
+    "Cart": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "fees": {
+          "type": "number"
+        },
+        "cartItems": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CartItems"
+          }
+        },
+        "total": {
+          "type": "number"
+        },
+        "exhibitor": {
+          "$ref": "#/definitions/Exhibitor"
+        }
+      },
+      "required": [
+        "fees",
+        "total",
+        "exhibitorId"
+      ]
+    },
+    "CartItems": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "standVariant": {
+          "$ref": "#/definitions/StandVariant"
+        },
+        "quantity": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "price": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "Cart": {
+          "$ref": "#/definitions/Cart"
+        }
+      },
+      "required": [
+        "standVariantId",
+        "cartId"
       ]
     },
     "ShowGuide": {
@@ -507,6 +565,12 @@
         },
         "stand": {
           "$ref": "#/definitions/Stand"
+        },
+        "CartItems": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CartItems"
+          }
         }
       },
       "required": [
@@ -603,6 +667,12 @@
     },
     "exhibitor": {
       "$ref": "#/definitions/Exhibitor"
+    },
+    "cart": {
+      "$ref": "#/definitions/Cart"
+    },
+    "cartItems": {
+      "$ref": "#/definitions/CartItems"
     },
     "showGuide": {
       "$ref": "#/definitions/ShowGuide"

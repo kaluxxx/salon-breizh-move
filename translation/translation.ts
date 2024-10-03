@@ -62,4 +62,5 @@ export const nextAdminTranslations = {
     "search.advanced.conditions.endsWith": "Finit par",
     "search.advanced.conditions.null": "Est nul",
     "search.advanced.conditions.nnull": "N'est pas nul",
+    "exhibitor.details.label": "Détails",
 };

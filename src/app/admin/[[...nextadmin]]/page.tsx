@@ -5,7 +5,6 @@ import {nextAdminTranslations} from "../../../../translation/translation";
 import {prisma} from "../../../../prisma/lib/prisma";
 import {options} from "@/nextAdmin/options";
 
-
 export default async function AdminPage({
                                             params,
                                             searchParams,

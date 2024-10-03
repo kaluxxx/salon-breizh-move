@@ -126,15 +126,37 @@ model Exhibitor {
   closeTo          String?
   awayFrom         String?
   comments         String?
-  nbCoExhibitors   Int?
   coExhibitors     CoExhibitor[]
-  registrationFees Float
   createdAt        DateTime      @default(now())
   updatedAt        DateTime      @updatedAt
   Event            Event?        @relation(fields: [eventId], references: [id])
   eventId          String?
+  cart             Cart?         @relation("OneToOneCart")
 
   @@map("exhibitors")
+}
+
+model Cart {
+  id        String      @id @default(cuid())
+  fees      Float
+  cartItems CartItems[] @relation("CartToCartItems")
+  total     Float
+  exhibitor   Exhibitor   @relation(fields: [exhibitorId], references: [id], name: "OneToOneCart")
+  exhibitorId String      @unique
+
+  @@map("carts")
+}
+
+model CartItems {
+  id             String       @id @default(cuid())
+  standVariant   StandVariant @relation(fields: [standVariantId], references: [id])
+  standVariantId String
+  quantity       Float?
+  price          Float?
+  cartId         String
+  Cart           Cart         @relation(fields: [cartId], references: [id], name: "CartToCartItems")
+
+  @@map("cart_items")
 }
 
 model ShowGuide {
@@ -176,7 +198,7 @@ model Stand {
 }
 
 model StandVariant {
-  id          String @id @default(cuid())
+  id          String      @id @default(cuid())
   name        String
   description String
   price       Float?
@@ -184,7 +206,8 @@ model StandVariant {
   maxSize     Float?
   size        Float?
   standId     String
-  stand       Stand  @relation("StandVariants", fields: [standId], references: [id])
+  stand       Stand       @relation("StandVariants", fields: [standId], references: [id])
+  CartItems   CartItems[]
 
   @@map("stand_variants")
 }

@@ -4,26 +4,27 @@ import {isGranted} from "@/utils/auth";
 import {NextRequest} from "next/server";
 import {prisma} from "../../prisma/lib/prisma";
 import {Role} from "@/types/role";
+import ExhibitorDetailsDialog from "@/components/exhibitorDetailsDialog";
 
 export const options: NextAdminOptions = {
-        title: "Espace administration",
-        model: {
-            User: {
-                toString: (user) => user.email,
-                aliases: {
-                    email: "Email",
-                    emailVerified: "Email vérifié",
-                    role: "Role"
-                },
-                title: "Utilisateurs",
-                icon: "UsersIcon",
-                list: {
-                    display: ["email", "emailVerified", "role"],
-                    search: ["email", "role"],
-                    filters: [
-                        {
-                            name: "Admin",
-                            active: false,
+    title: "Espace administration",
+    model: {
+        User: {
+            toString: (user) => user.email,
+            aliases: {
+                email: "Email",
+                emailVerified: "Email vérifié",
+                role: "Role"
+            },
+            title: "Utilisateurs",
+            icon: "UsersIcon",
+            list: {
+                display: ["email", "emailVerified", "role"],
+                search: ["email", "role"],
+                filters: [
+                    {
+                        name: "Admin",
+                        active: false,
                             value: {
                                 role: {
                                     equals: "ADMIN",
@@ -228,6 +229,26 @@ export const options: NextAdminOptions = {
                 toString: (exhibitor) => exhibitor.companyName,
                 title: "Exposants",
                 icon: "UserIcon",
+                list: {
+                    display: ["companyName"],
+                    search: ["companyName", "address.email", "address.phone"],
+                },
+                edit: {
+                    display: [
+                        "companyName",
+                        "address",
+                    ],
+                },
+                actions: [
+                    {
+                        type: "dialog",
+                        icon: "EyeIcon",
+                        id: "exhibitor-details",
+                        title: "exhibitor.details.label",
+                        component: <ExhibitorDetailsDialog/>,
+
+                    }
+                ],
             },
             ShowGuide: {
                 toString: (showGuide) => showGuide.companyName,

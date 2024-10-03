@@ -5,10 +5,28 @@ import Link from "next/link";
 import {useRouter} from "next/navigation";
 import {Button} from "@/components/ui/button";
 import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@/components/ui/accordion";
+import {useQuery} from "@tanstack/react-query";
+import {getThematics} from "@/app/action/thematicActions";
+import {preRegister} from "@/app/action/exhibitorAction";
+import {getCivility} from "@/utils/format";
 
 export default function Confirmation() {
     const router = useRouter();
-    const {exhibitor} = useExhibitorRegistrationFormContext().exhibitorRegistration ?? {};
+    const {exhibitor, cart} = useExhibitorRegistrationFormContext().exhibitorRegistration ?? {};
+
+    const {data} = useQuery({
+        queryKey: ["thematics"],
+        queryFn: getThematics,
+    });
+
+
+    async function submitPreRegistration() {
+        if (!exhibitor || !cart) {
+            return;
+        }
+
+        await preRegister({exhibitor, cart});
+    }
 
     return (
         <Card className="space-y-4 w-full md:w-2/3">
@@ -46,9 +64,20 @@ export default function Confirmation() {
                                                 </div>
                                                 <div>
                                                     <strong>
-                                                        Adresse :
-                                                    </strong>
+                                                        Adresse :{" "}</strong>
                                                     {exhibitor.address.address}, {exhibitor.address.additionalAddress && `${exhibitor.address.additionalAddress}, `}{exhibitor.address.postalCode} {exhibitor.address.city}
+                                                </div>
+                                                {!exhibitor.isSameBillingAddress && (
+                                                    <div>
+                                                        <strong>Adresse de facturation
+                                                            :</strong> {exhibitor.billingAddress.address}, {exhibitor.billingAddress.additionalAddress && `${exhibitor.billingAddress.additionalAddress}, `}{exhibitor.billingAddress.postalCode} {exhibitor.billingAddress.city}
+                                                    </div>
+                                                )}
+                                                <div>
+                                                    <strong>Adresse email :</strong> {exhibitor.address.email}
+                                                </div>
+                                                <div>
+                                                    <strong>Téléphone :</strong> {exhibitor.address.phone}
                                                 </div>
                                                 <div>
                                                     <strong>Numéro de SIRET :</strong> {exhibitor.siret}
@@ -62,58 +91,50 @@ export default function Confirmation() {
                                             </AccordionContent>
                                         </AccordionItem>
                                         <AccordionItem value="sub-item-2">
-                                            <AccordionTrigger className="text-xl font-bold text-left">
+                                            <AccordionTrigger className="text-lg font-bold text-left">
                                                 Responsable de l'entreprise
                                             </AccordionTrigger>
-                                            <AccordionContent className="space-y-4 px-2">
+                                            <AccordionContent>
                                                 <div>
-                                                    <strong>Responsable d'entreprise
-                                                        :</strong> {exhibitor.companyManager.firstName} {exhibitor.companyManager.lastName}
-                                                </div>
-                                                <div>
-                                                    <strong>Contact email responsable d'entreprise
-                                                        :</strong> {exhibitor.companyManager.email}
-                                                </div>
-                                                <div>
-                                                    <strong>Contact téléphone responsable d'entreprise
-                                                        :</strong> {exhibitor.companyManager.phone}
+                                                    <strong>Responsable de l'entreprise
+                                                        :</strong> {getCivility(exhibitor.companyManager.civility)} {exhibitor.companyManager.firstName} {exhibitor.companyManager.lastName}
                                                 </div>
                                             </AccordionContent>
                                         </AccordionItem>
                                         <AccordionItem value="sub-item-3">
-                                            <AccordionTrigger className="text-xl font-bold text-left">
+                                            <AccordionTrigger className="text-lg font-bold text-left">
                                                 Responsable du stand
                                             </AccordionTrigger>
-                                            <AccordionContent className="space-y-4 px-2">
+                                            <AccordionContent>
                                                 <div>
                                                     <strong>Responsable du stand
-                                                        :</strong> {exhibitor.standManager.firstName} {exhibitor.standManager.lastName}
+                                                        :</strong> {getCivility(exhibitor.standManager.civility)} {exhibitor.standManager.firstName} {exhibitor.standManager.lastName}
                                                 </div>
                                                 <div>
-                                                    <strong>Contact email responsable du stand
+                                                    <strong>Adresse email du responsable du stand
                                                         :</strong> {exhibitor.standManager.email}
                                                 </div>
                                                 <div>
-                                                    <strong>Contact téléphone responsable du stand
+                                                    <strong>Téléphone du responsable du stand
                                                         :</strong> {exhibitor.standManager.phone}
                                                 </div>
                                             </AccordionContent>
                                         </AccordionItem>
                                         <AccordionItem value="sub-item-4">
-                                            <AccordionTrigger className="text-xl font-bold text-left">
+                                            <AccordionTrigger className="text-lg font-bold text-left">
                                                 Contact sur le site
                                             </AccordionTrigger>
-                                            <AccordionContent className="space-y-4 px-2">
+                                            <AccordionContent>
                                                 <div>
-                                                    <strong>Responsable sur le site
-                                                        :</strong> {exhibitor.onSiteContact.firstName} {exhibitor.onSiteContact.lastName}
+                                                    <strong>Contact sur le site
+                                                        :</strong> {getCivility(exhibitor.onSiteContact.civility)} {exhibitor.onSiteContact.firstName} {exhibitor.onSiteContact.lastName}
                                                 </div>
                                                 <div>
-                                                    <strong>Contact email responsable sur le site
+                                                    <strong>Adresse email du contact sur le site
                                                         :</strong> {exhibitor.onSiteContact.email}
                                                 </div>
                                                 <div>
-                                                    <strong>Contact téléphone responsable sur le site
+                                                    <strong>Téléphone du contact sur le site
                                                         :</strong> {exhibitor.onSiteContact.phone}
                                                 </div>
                                             </AccordionContent>
@@ -125,18 +146,26 @@ export default function Confirmation() {
                                 <AccordionTrigger className="text-xl font-bold text-left">
                                     B. Guide du salon et site internet
                                 </AccordionTrigger>
-                                <AccordionContent className="space-y-4 px-2">
+                                <AccordionContent>
                                     <div>
-                                        <strong>Guide d'exposition
+                                        <strong>Nom de l'entreprise
                                             :</strong> {exhibitor.showGuide.companyName}
                                     </div>
                                     <div>
-                                        <strong>Adresse du guide
+                                        <strong>Adresse de l'entreprise
                                             :</strong> {exhibitor.showGuide.address.address}, {exhibitor.showGuide.address.additionalAddress && `${exhibitor.showGuide.address.additionalAddress}, `}{exhibitor.showGuide.address.postalCode} {exhibitor.showGuide.address.city}
                                     </div>
                                     <div>
-                                        <strong>Thématiques
-                                            :</strong> {exhibitor.showGuide.thematics.join(", ")}
+                                        <strong>Adresse email de l'entreprise
+                                            :</strong> {exhibitor.showGuide.address.email}
+                                    </div>
+                                    <div>
+                                        <strong>Téléphone de l'entreprise
+                                            :</strong> {exhibitor.showGuide.address.phone}
+                                    </div>
+                                    <div>
+                                        <strong>Rubriques
+                                            :</strong> {exhibitor.showGuide.thematics.map((thematic) => data?.find((t) => t.id === thematic)?.name).join(", ")}
                                     </div>
                                     <div>
                                         <strong>Description de l'entreprise
@@ -148,40 +177,42 @@ export default function Confirmation() {
                                     </div>
                                 </AccordionContent>
                             </AccordionItem>
-                            <AccordionItem value="item-3">
-                                <AccordionTrigger className="text-xl font-bold text-left">
-                                    C. Emplacement du stand
-                                </AccordionTrigger>
-                                <AccordionContent className="space-y-4 px-2">
-                                    {exhibitor.hasCoExhibitors === "yes" && exhibitor.coExhibitors?.length && (
+                            {exhibitor.hasSpecialRequest === "yes" && (
+                                <AccordionItem value="item-3">
+                                    <AccordionTrigger className="text-xl font-bold text-left">
+                                        C. Emplacement du stand
+                                    </AccordionTrigger>
+                                    <AccordionContent>
+                                        <div>
+                                            <strong>Proche de :</strong> {exhibitor.closeTo ?? "N/A"}
+                                        </div>
+                                        <div>
+                                            <strong>Éloigné de :</strong> {exhibitor.awayFrom ?? "N/A"}
+                                        </div>
+                                        <div>
+                                            <strong>Commentaires
+                                                :</strong> {exhibitor.comments ?? "Aucun commentaire"}
+                                        </div>
+                                    </AccordionContent>
+                                </AccordionItem>
+                            )}
+                            {exhibitor.hasCoExhibitors === "yes" && exhibitor.coExhibitors?.length && (
+                                <AccordionItem value="item-4">
+                                    <AccordionTrigger className="text-xl font-bold text-left">
+                                        D. Co-exposition
+                                    </AccordionTrigger>
+                                    <AccordionContent>
                                         <div>
                                             <strong>Co-exposants :</strong>
-                                            <ul>
+                                            <ul className="list-disc list-inside">
                                                 {exhibitor.coExhibitors?.map((coExhibitor) => (
                                                     <li key={coExhibitor.companyName}>{coExhibitor.companyName}</li>
                                                 ))}
                                             </ul>
                                         </div>
-                                    )}
-                                </AccordionContent>
-                            </AccordionItem>
-                            <AccordionItem value="item-4">
-                                <AccordionTrigger className="text-xl font-bold text-left">
-                                    D. Co-exposition
-                                </AccordionTrigger>
-                                <AccordionContent className="space-y-4 px-2">
-                                    <div>
-                                        <strong>Commentaires
-                                            :</strong> {exhibitor.comments ?? "Aucun commentaire"}
-                                    </div>
-                                    <div>
-                                        <strong>Proche de :</strong> {exhibitor.closeTo ?? "N/A"}
-                                    </div>
-                                    <div>
-                                        <strong>Éloigné de :</strong> {exhibitor.awayFrom ?? "N/A"}
-                                    </div>
-                                </AccordionContent>
-                            </AccordionItem>
+                                    </AccordionContent>
+                                </AccordionItem>
+                            )}
                         </Accordion>
                     ) : (
                         <p className="text-center text-primary">Aucune pré-réservation en cours</p>
@@ -193,16 +224,8 @@ export default function Confirmation() {
                         <Link className="underline text-primary" href="#">conditions générales de participation</Link>.
                     </p>
                     <div className="w-full py-2 space-x-8 flex justify-between">
-                        <Button
-                            onClick={() => router.push("/register/exhibitor/step_two")}
-                        >
-                            Précédent
-                        </Button>
-                        <Button
-                            type="submit"
-                        >
-                            Envoyer ma pré-réservation
-                        </Button>
+                        <Button onClick={() => router.push("/register/exhibitor/step_two")}>Précédent</Button>
+                        <Button onClick={submitPreRegistration}>Envoyer ma pré-réservation</Button>
                     </div>
                 </CardFooter>
             </CardHeader>

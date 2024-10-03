@@ -70,15 +70,9 @@ export default function StepOneForm() {
     const addressFields = form.watch(["address.address", "address.postalCode", "address.city", "address.email", "address.phone"]);
     const isAddressComplete = Object.values(addressFields).every(Boolean);
 
-    useWatchBoolean(() => form.watch("isSameBillingAddress"), setIsBillingAddressSame, !!isBillingAddressSame, "true", "false");
-    useWatchBoolean(() => form.watch("hasSpecialRequest"), setHasSpecialRequest, !!hasSpecialRequest, "yes", "no");
-    useWatchBoolean(() => form.watch("hasCoExhibitors"), setHasCoExhibitor, hasCoExhibitor, "yes", "no", (hasCoExhibitor) => {
-        if (hasCoExhibitor) {
-            append({companyName: ""});
-        } else {
-            fields.forEach((_, index) => remove(index));
-        }
-    });
+    useWatchBoolean(() => form.watch("isSameBillingAddress"), setIsBillingAddressSame, "true", "false");
+    useWatchBoolean(() => form.watch("hasSpecialRequest"), setHasSpecialRequest, "yes", "no");
+    useWatchBoolean(() => form.watch("hasCoExhibitors"), setHasCoExhibitor, "yes", "no");
 
     useEffect(() => {
         form.setValue("billingAddress", isBillingAddressSame ? form.getValues("address") : {
@@ -90,6 +84,14 @@ export default function StepOneForm() {
             phone: ""
         });
     }, [isBillingAddressSame, form]);
+
+    useEffect(() => {
+        if (form.watch("hasCoExhibitors")) {
+            append({companyName: ""});
+        } else {
+            fields.forEach((_, index) => remove(index));
+        }
+    }, [form.watch("hasCoExhibitors")]);
 
     useEffect(() => {
         const errors = form.formState.errors;
@@ -108,7 +110,7 @@ export default function StepOneForm() {
             }
         }
 
-    }, [form, form.formState.errors?.coExhibitors]);
+    }, [form.formState.errors?.coExhibitors]);
 
     function onSubmit(values: ExhibitorFormValues) {
         formContext.updateRegistrationData({exhibitor: values});
