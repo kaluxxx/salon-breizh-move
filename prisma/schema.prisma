@@ -34,7 +34,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
 
-  @@map("users")
+  @@map("breizhmove_users")
 }
 
 model Account {
@@ -54,7 +54,7 @@ model Account {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
-  @@map("accounts")
+  @@map("breizhmove_accounts")
 }
 
 model Session {
@@ -64,7 +64,7 @@ model Session {
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@map("sessions")
+  @@map("breizhmove_sessions")
 }
 
 model VerificationToken {
@@ -73,7 +73,7 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
-  @@map("verificationtokens")
+  @@map("breizhmove_verificationtokens")
 }
 
 model Person {
@@ -87,7 +87,7 @@ model Person {
   exhibitorsStandManager   Exhibitor[] @relation("StandManager")
   exhibitorsOnSiteContact  Exhibitor[] @relation("OnSiteContact")
 
-  @@map("persons")
+  @@map("breizhmove_persons")
 }
 
 model Address {
@@ -102,7 +102,7 @@ model Address {
   billingExhibitors Exhibitor[] @relation("ExhibitorBillingAddress")
   showGuides        ShowGuide[] @relation("ExhibitorShowGuideAddress")
 
-  @@map("addresses")
+  @@map("breizhmove_addresses")
 }
 
 model Exhibitor {
@@ -133,7 +133,7 @@ model Exhibitor {
   eventId          String?
   cart             Cart?         @relation("OneToOneCart")
 
-  @@map("exhibitors")
+  @@map("breizhmove_exhibitors")
 }
 
 model Cart {
@@ -144,7 +144,7 @@ model Cart {
   exhibitor   Exhibitor   @relation(fields: [exhibitorId], references: [id], name: "OneToOneCart")
   exhibitorId String      @unique
 
-  @@map("carts")
+  @@map("breizhmove_carts")
 }
 
 model CartItems {
@@ -156,7 +156,7 @@ model CartItems {
   cartId         String
   Cart           Cart         @relation(fields: [cartId], references: [id], name: "CartToCartItems")
 
-  @@map("cart_items")
+  @@map("breizhmove_cart_items")
 }
 
 model ShowGuide {
@@ -169,7 +169,7 @@ model ShowGuide {
   website             String
   Exhibitor           Exhibitor[]
 
-  @@map("showguides")
+  @@map("breizhmove_showguides")
 }
 
 model CoExhibitor {
@@ -178,7 +178,7 @@ model CoExhibitor {
   exhibitor   Exhibitor @relation(fields: [exhibitorId], references: [id])
   exhibitorId String
 
-  @@map("coexhibitors")
+  @@map("breizhmove_coexhibitors")
 }
 
 model Thematic {
@@ -186,7 +186,7 @@ model Thematic {
   name       String
   showGuides ShowGuide[] @relation("ShowGuideThematics")
 
-  @@map("thematics")
+  @@map("breizhmove_thematics")
 }
 
 model Stand {
@@ -194,7 +194,7 @@ model Stand {
   type     String
   variants StandVariant[] @relation("StandVariants")
 
-  @@map("stands")
+  @@map("breizhmove_stands")
 }
 
 model StandVariant {
@@ -209,7 +209,7 @@ model StandVariant {
   stand       Stand       @relation("StandVariants", fields: [standId], references: [id])
   CartItems   CartItems[]
 
-  @@map("stand_variants")
+  @@map("breizhmove_stand_variants")
 }
 
 model Event {
@@ -224,7 +224,7 @@ model Event {
   location    String
   exhibitors  Exhibitor[]
 
-  @@map("events")
+  @@map("breizhmove_events")
 }
 
 model EventType {
@@ -232,5 +232,5 @@ model EventType {
   name  String
   Event Event[]
 
-  @@map("eventtypes")
+  @@map("breizhmove_eventtypes")
 }
