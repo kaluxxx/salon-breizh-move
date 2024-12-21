@@ -1,7 +1,7 @@
 import {QueryClient, HydrationBoundary, dehydrate} from "@tanstack/react-query";
-import StepTwoForm from "@/app/register/exhibitor/step_two/form";
-import SharedLayout from "@/app/register/exhibitor/sharedLayout";
 import {getStands} from "@/app/action/standAction";
+import SharedLayout from "@/app/reservation/exposant/sharedLayout";
+import StepTwoForm from "@/app/reservation/exposant/stand/form";
 
 export default async function Page() {
     const queryClient = new QueryClient();

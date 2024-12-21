@@ -9,17 +9,17 @@ export default function Steps() {
             className="flex flex-col md:flex-row h-auto items-center justify-between rounded-lg bg-primary p-1 text-white w-full">
             <StepTitle
                 title="Informations générales"
-                isCurrent={pathname === "/register/exhibitor/step_one"}
+                isCurrent={pathname === "/reservation/exposant/infos"}
                 index={1}
             />
             <StepTitle
                 title="Choix du stand"
-                isCurrent={pathname === "/register/exhibitor/step_two"}
+                isCurrent={pathname === "/reservation/exposant/stand"}
                 index={2}
             />
             <StepTitle
                 title="Confirmation"
-                isCurrent={pathname === "/register/exhibitor/confirmation"}
+                isCurrent={pathname === "/reservation/exposant/confirmation"}
                 index={3}
             />
         </div>

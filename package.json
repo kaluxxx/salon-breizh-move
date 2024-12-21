@@ -36,7 +36,7 @@
     "dompurify": "^3.1.6",
     "jsonwebtoken": "^9.0.2",
     "lucide-react": "^0.445.0",
-    "next": "14.2.13",
+    "next": "^14.2.21",
     "next-auth": "^4.24.7",
     "nodemailer": "^6.9.15",
     "prisma-json-schema-generator": "^5.1.1",
