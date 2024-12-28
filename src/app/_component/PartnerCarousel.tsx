@@ -21,7 +21,7 @@ export function PartnerCarousel() {
         <Carousel
             opts={{align: "start", loop: true}}
             plugins={[plugin.current]}
-            className="w-full mt-8"
+            className="w-5/6 mt-8"
             onMouseEnter={plugin.current.stop}
             onMouseLeave={plugin.current.reset}
         >

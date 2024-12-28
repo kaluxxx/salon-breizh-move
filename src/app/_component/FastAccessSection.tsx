@@ -3,11 +3,13 @@ import FastAccessCard from "@/app/_component/FastAccessCard";
 
 export default function FastAccessSection() {
     return (
-        <section className="bg-primary text-white py-16">
-            <div className="container mx-auto px-4">
-                <h2 className="text-4xl font-bold text-center">Accès rapide</h2>
-                <p className="text-center mb-4">Accédez rapidement aux différentes sections du site</p>
-                <div className="flex max-md:flex-col flex-wrap justify-center items-center gap-12 mt-8">
+        <section className="min-h-screen relative flex flex-col items-center justify-center bg-primary text-white py-16"
+                 style={{backgroundImage: "url(/images/salon-1.jpg)", backgroundSize: "cover"}}>
+            <div className="absolute inset-0 bg-blue-500 opacity-50"></div>
+            <div className="relative container mx-auto px-4">
+                <h2 className="text-6xl font-bold text-center">Accès rapide</h2>
+                <p className="text-center text-xl">Accédez rapidement aux différentes sections du site</p>
+                <div className="flex max-md:flex-col flex-wrap justify-center items-center gap-12 mt-12">
                     <FastAccessCard
                         title="Pré-inscriptions"
                         headerDescription="Pré-inscrivez-vous pour participer à l'événement"

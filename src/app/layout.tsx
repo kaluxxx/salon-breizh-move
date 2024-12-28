@@ -2,11 +2,11 @@ import "./globals.css";
 import {ReactNode} from "react";
 import type {Metadata} from "next";
 import {getServerSession} from "next-auth";
-import Navbar from "@/components/navbar";
+import NavigationBar from "@/app/_navigation/NavigationBar";
 import {Toaster} from "@/components/ui/toaster";
 import Providers from "@/provider/providers";
 
-import { ABeeZee } from 'next/font/google'
+import {ABeeZee} from 'next/font/google'
 import {authOptions} from "@/utils/authOptions";
 
 const roboto = ABeeZee({
@@ -32,8 +32,10 @@ export default async function RootLayout({
             className={`${roboto.className} antialiased bg-white text-foreground flex flex-col`}
         >
         <Providers>
-            <Navbar session={session}/>
-            {children}
+            <NavigationBar session={session}/>
+            <main className="min-h-[calc(100vh-70px)] flex flex-col">
+                {children}
+            </main>
             <Toaster/>
         </Providers>
         </body>
