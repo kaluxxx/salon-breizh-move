@@ -27,9 +27,9 @@ export default async function RootLayout({
 }>) {
     const session = await getServerSession(authOptions);
     return (
-        <html lang="en">
+        <html lang="fr">
         <body
-            className={`${roboto.className} antialiased bg-secondary text-foreground flex flex-col`}
+            className={`${roboto.className} antialiased bg-white text-foreground flex flex-col`}
         >
         <Providers>
             <Navbar session={session}/>

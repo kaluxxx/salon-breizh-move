@@ -58,7 +58,7 @@ export default function StepTwoForm() {
 
     function onSubmit(values: CartFormValues) {
         formContext.updateRegistrationData({cart: {...values, total: calculateTotalPrice()}});
-        router.push("/register/exhibitor/confirmation");
+        router.push("/reservation/exposant/confirmation");
     }
 
     useEffect(() => {

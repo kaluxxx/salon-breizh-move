@@ -13,6 +13,7 @@ import {Role} from "@/types/role";
 import {usePathname} from "next/navigation";
 import {CustomSession} from "@/types/session";
 import {Session} from "next-auth";
+import Image from "next/image";
 
 export default function Navbar({session}: Readonly<{ session: Session | null }>) {
     const pathname = usePathname();
@@ -41,7 +42,10 @@ export default function Navbar({session}: Readonly<{ session: Session | null }>)
         };
     }
 
-    const {title: accountLinkTitle, path: accountLinkPath} = getAccountLink(!!session, (session as CustomSession)?.role);
+    const {
+        title: accountLinkTitle,
+        path: accountLinkPath
+    } = getAccountLink(!!session, (session as CustomSession)?.role);
 
     const menus = [
         {
@@ -56,7 +60,7 @@ export default function Navbar({session}: Readonly<{ session: Session | null }>)
             id: 2,
             title: "Exposer",
             links: [
-                {id: 1, title: "Pré-réserver", path: "/register/exhibitor"},
+                {id: 1, title: "Pré-réserver", path: "/reservation/exposant"},
                 {id: 2, title: "Pourquoi exposer ?", path: "#"},
             ],
         },
@@ -95,69 +99,56 @@ export default function Navbar({session}: Readonly<{ session: Session | null }>)
     ];
 
     return (
-        <header className="sticky top-0 z-50 h-[70px]">
-            <nav className="bg-primary w-full border-b md:border-0">
-                <div className="items-center px-4 max-w-screen-xl mx-auto md:flex md:px-8">
-                    <div className="flex items-center justify-between py-3 md:py-5 md:block">
-                        <Link href="/">
-                            <h1 className="text-3xl font-bold text-secondary">Logo</h1>
-                        </Link>
-                        <div className="md:hidden">
-                            <button
-                                className="text-gray-700 outline-none p-2 rounded-md focus:border-gray-400 focus:border"
-                                onClick={() => setState(!state)}
-                            >
-                                <Menu/>
-                            </button>
-                        </div>
+        <header className="sticky top-0 z-50 h-fit py-4 bg-white">
+            <nav className="container mx-auto w-full border-b md:border-0 items-center px-4 md:flex md:px-8">
+                <div className="flex items-center justify-between md:block">
+                    <Link href="/">
+                        <Image src="/images/logo.png" alt="Logo" className="w-full" width={150} height={50}/>
+                    </Link>
+                    <div className="md:hidden">
+                        <button
+                            className="text-gray-700 outline-none p-2 rounded-md focus:border-gray-400 focus:border"
+                            onClick={() => setState(!state)}
+                        >
+                            <Menu/>
+                        </button>
                     </div>
-                    <div
-                        className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
-                            state ? "block" : "hidden"
-                        }`}
-                    >
-                        <ul className="justify-center items-center space-y-8 md:flex md:space-x-6 md:space-y-0">
-                            {menus.map((item) => (
-                                <li key={item.id} className="cursor-pointer text-secondary">
-                                    {item.links ? (
-                                        <DropdownMenu
-                                            open={openDropdownId === item.id}
-                                            onOpenChange={(isOpen) =>
-                                                setOpenDropdownId(isOpen ? item.id : null)
-                                            }
-                                        >
-                                            <DropdownMenuTrigger
-                                                onMouseEnter={() => setOpenDropdownId(item.id)}
-                                                asChild
-                                            >
+                </div>
+                <div
+                    className={`flex-1 pb-3 mt-8 md:block md:pb-0 md:mt-0 ${state ? "block" : "hidden"}`}>
+                    <ul className="justify-end items-center space-y-8 md:flex md:space-x-10 md:space-y-0">
+                        {menus.map((item) => (
+                            <li key={item.id} className="cursor-pointer">
+                                {item.links ? (
+                                    <DropdownMenu open={openDropdownId === item.id}
+                                                  onOpenChange={(isOpen) => setOpenDropdownId(isOpen ? item.id : null)}>
+                                        <DropdownMenuTrigger onMouseEnter={() => setOpenDropdownId(item.id)}
+                                                             asChild>
                                             <span className="flex items-center cursor-pointer">
                                                 {item.title}
                                                 <ChevronDown className="ml-1"/>
                                             </span>
-                                            </DropdownMenuTrigger>
-                                            <DropdownMenuContent
-                                                onMouseLeave={() => setOpenDropdownId(null)}
-                                                align="start"
-                                            >
-                                                {item.links.map((link) => (
-                                                    <Fragment key={link.id}>
-                                                        <DropdownMenuItem className="focus:bg-primary focus:text-white">
-                                                            <Link href={link.path}>{link.title}</Link>
-                                                        </DropdownMenuItem>
-                                                        {link.id !== item.links.length && (
-                                                            <DropdownMenuSeparator/>
-                                                        )}
-                                                    </Fragment>
-                                                ))}
-                                            </DropdownMenuContent>
-                                        </DropdownMenu>
-                                    ) : (
-                                        <Link href={item.path}>{item.title}</Link>
-                                    )}
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
+                                        </DropdownMenuTrigger>
+                                        <DropdownMenuContent onMouseLeave={() => setOpenDropdownId(null)}
+                                                             align="start">
+                                            {item.links.map((link) => (
+                                                <Fragment key={link.id}>
+                                                    <DropdownMenuItem className="focus:bg-primary focus:text-white">
+                                                        <Link href={link.path}>{link.title}</Link>
+                                                    </DropdownMenuItem>
+                                                    {link.id !== item.links.length && (
+                                                        <DropdownMenuSeparator/>
+                                                    )}
+                                                </Fragment>
+                                            ))}
+                                        </DropdownMenuContent>
+                                    </DropdownMenu>
+                                ) : (
+                                    <Link href={item.path}>{item.title}</Link>
+                                )}
+                            </li>
+                        ))}
+                    </ul>
                 </div>
             </nav>
         </header>
