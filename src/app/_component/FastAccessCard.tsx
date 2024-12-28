@@ -20,7 +20,7 @@ export default function FastAccessCard({
                                            linkText
                                        }: FastAccessCardProps) {
     return (
-        <Card className="max-w-md flex flex-col justify-between">
+        <Card className="max-w-md h-96 flex flex-col justify-between">
             <CardHeader className="flex flex-col justify-center items-center">
                 <CardTitle className="text-3xl">{title}</CardTitle>
                 <CardDescription>{headerDescription}</CardDescription>

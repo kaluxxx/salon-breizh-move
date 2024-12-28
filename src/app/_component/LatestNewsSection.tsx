@@ -1,19 +1,14 @@
+import LastNewsCarousel from "@/app/_component/LastNewsCarousel";
+
 export default function LatestNewsSection() {
     return (
-        <section className="container mx-auto px-4 py-12">
-            <h2 className="text-3xl font-bold text-center">Actualités</h2>
-            <p className="text-center">Les dernières actualités du salon</p>
-            <div className="flex max-md:flex-col gap-4 mt-8">
-                <div className="flex flex-col w-full md:w-1/3">
-                    <div className="flex flex-col gap-4">
-                        <div className="h-52 bg-gray-200 rounded-lg"/>
-                        <div className="h-52 bg-gray-200 rounded-lg"/>
-                    </div>
-                </div>
-                <div className="flex flex-col w-full md:w-2/3 gap-4">
-                    <div className="h-96 bg-gray-200 rounded-lg"/>
-                    <div className="h-96 bg-gray-200 rounded-lg"/>
-                </div>
+        <section
+            className="min-h-screen bg-secondary text-white flex flex-col items-center justify-center px-8 py-12"
+        >
+            <h2 className="text-6xl font-bold text-center">Actualités</h2>
+            <p className="text-center text-xl">Les dernières actualités du salon</p>
+            <div className="container mx-auto mt-8">
+                <LastNewsCarousel/>
             </div>
         </section>
     )
