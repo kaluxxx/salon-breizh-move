@@ -1,12 +1,12 @@
 import {ReactNode} from "react";
-import Steps from "@/app/register/exhibitor/steps";
 import Cart from "@/components/cart";
+import Steps from "@/app/reservation/exposant/steps";
 
 export default async function SharedLayout({children}: Readonly<{
     children: ReactNode;
 }>) {
     return (
-        <section className="relative flex flex-col items-center justify-center gap-4 maw-w-2xl lg:max-w-5xl mx-auto">
+        <section className="relative flex flex-col items-center justify-center gap-4 container mx-auto">
             <Steps/>
             <div className="flex flex-col md:flex-row w-full gap-4">
                 {children}

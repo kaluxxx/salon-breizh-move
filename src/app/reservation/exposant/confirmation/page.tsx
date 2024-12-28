@@ -1,7 +1,7 @@
-import SharedLayout from "@/app/register/exhibitor/sharedLayout";
-import Confirmation from "@/app/register/exhibitor/confirmation/confirmation";
 import {dehydrate, HydrationBoundary, QueryClient} from "@tanstack/react-query";
 import {getThematics} from "@/app/action/thematicActions";
+import SharedLayout from "@/app/reservation/exposant/sharedLayout";
+import Confirmation from "@/app/reservation/exposant/confirmation/confirmation";
 
 export default async function Page() {
     const queryClient = new QueryClient();

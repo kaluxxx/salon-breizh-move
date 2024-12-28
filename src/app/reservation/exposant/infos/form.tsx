@@ -114,7 +114,7 @@ export default function StepOneForm() {
 
     function onSubmit(values: ExhibitorFormValues) {
         formContext.updateRegistrationData({exhibitor: values});
-        router.push("/register/exhibitor/step_two");
+        router.push("/reservation/exposant/stand");
     }
 
     return (

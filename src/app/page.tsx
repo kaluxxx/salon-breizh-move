@@ -1,8 +1,17 @@
+import PartnerSection from "@/app/_component/PartnerSection";
+import LatestNewsSection from "@/app/_component/LatestNewsSection";
+import FastAccessSection from "@/app/_component/FastAccessSection";
+import HeroSection from "@/app/_component/HeroSection";
+
 export default function Home() {
+
     return (
-        <main className="container mx-auto px-4 flex-1 flex">
-            <h1>Home</h1>
-            <p>Welcome to the Home page</p>
-        </main>
+        <>
+            <HeroSection/>
+            <FastAccessSection/>
+            <LatestNewsSection/>
+            <PartnerSection/>
+        </>
+
     );
 }
