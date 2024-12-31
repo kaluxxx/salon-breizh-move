@@ -1,10 +1,10 @@
 import EmailProvider from "next-auth/providers/email";
-import {sendVerificationRequest} from "@/utils/email";
+import {sendVerificationRequest} from "@/lib/emailService";
 import {NextAuthOptions} from "next-auth";
 import {PrismaAdapter} from "@next-auth/prisma-adapter";
 import {prisma} from "../../prisma/lib/prisma";
-import {User} from "@/types/user";
-import {CustomSession} from "@/types/session";
+import {User} from "@prisma/client";
+import {CustomSession} from "@/types/models/Session";
 
 const providers = [
     EmailProvider({

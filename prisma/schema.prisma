@@ -137,10 +137,10 @@ model Exhibitor {
 }
 
 model Cart {
-  id        String      @id @default(cuid())
-  fees      Float
-  cartItems CartItems[] @relation("CartToCartItems")
-  total     Float
+  id          String      @id @default(cuid())
+  fees        Float
+  cartItems   CartItems[] @relation("CartToCartItems")
+  total       Float
   exhibitor   Exhibitor   @relation(fields: [exhibitorId], references: [id], name: "OneToOneCart")
   exhibitorId String      @unique
 
@@ -233,4 +233,14 @@ model EventType {
   Event Event[]
 
   @@map("breizhmove_eventtypes")
+}
+
+model Contact {
+  id        String @id @default(cuid())
+  firstName String
+  lastName  String
+  email     String
+  message   String
+
+  @@map("breizhmove_contacts")
 }

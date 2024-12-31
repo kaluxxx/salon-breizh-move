@@ -3,7 +3,7 @@ import {getNextAdminProps} from "@premieroctet/next-admin/appRouter";
 import schema from "../../../../prisma/json-schema/json-schema.json";
 import {nextAdminTranslations} from "../../../../translation/translation";
 import {prisma} from "../../../../prisma/lib/prisma";
-import {options} from "@/nextAdmin/options";
+import {options} from "@/lib/nextAdmin/options";
 
 export default async function AdminPage({
                                             params,

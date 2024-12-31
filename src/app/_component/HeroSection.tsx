@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function HeroSection() {
     return (
         <section
-            className="flex max-lg:flex-col items-center justify-between min-h-[calc(100vh-70px)]">
+            className="min-h-[calc(100vh-70px)] flex max-lg:flex-col items-center justify-between">
             <div
                 className="relative flex h-full w-full md:w-1/2 before:absolute before:top-0 before:left-0 before:h-full before:w-full before:z-10">
                 <Image
@@ -13,11 +13,11 @@ export default function HeroSection() {
                     alt="Hero"
                     width={1920}
                     height={1080}
-                    className="z-20 object-cover w-full h-[calc(100vh)]"
+                    className="z-20 object-cover w-full h-[calc(100vh-70px)]"
                 />
             </div>
             <div
-                className="w-full md:w-1/2 text-xl text-gray-700 px-12">
+                className="w-full md:w-1/2 text-xl text-gray-700 px-12 py-8">
                 <div className="max-w-2xl mx-auto flex flex-col justify-center items-center gap-8">
                     <Image src="/images/logo.png" alt="Logo" width={250} height={100}/>
                     <div className="w-1/2 h-0.5 bg-primary"/>

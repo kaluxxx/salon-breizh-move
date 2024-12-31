@@ -1,5 +1,5 @@
 import {z} from "zod";
-import {AddressSchema} from "@/schema/addressSchema";
+import {AddressSchema} from "@/types/schema/addressSchema";
 
 export const ShowGuideSchema = z.object({
     companyName: z.string().min(1, {message: "Le nom de l'entreprise ne peut pas être vide"}),

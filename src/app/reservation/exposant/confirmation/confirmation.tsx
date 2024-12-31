@@ -8,7 +8,7 @@ import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@/co
 import {useQuery} from "@tanstack/react-query";
 import {getThematics} from "@/app/action/thematicActions";
 import {preRegister} from "@/app/action/exhibitorAction";
-import {getCivility} from "@/utils/format";
+import {getCivility} from "@/lib/format";
 
 export default function Confirmation() {
     const router = useRouter();

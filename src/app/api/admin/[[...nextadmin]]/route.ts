@@ -1,9 +1,9 @@
 import {createHandler} from "@premieroctet/next-admin/appHandler";
 import schema from "../../../../../prisma/json-schema/json-schema.json";
 import {prisma} from "../../../../../prisma/lib/prisma";
-import {options} from "@/nextAdmin/options";
-import {isGranted} from "@/utils/auth";
-import {Role} from "@/types/role";
+import {options} from "@/lib/nextAdmin/options";
+import {isGranted} from "@/lib/authUtils";
+import {Role} from "@/types/models/role";
 import {NextResponse} from "next/server";
 
 const { run } = createHandler({

@@ -2,9 +2,7 @@ import Image from "next/image";
 
 export default function PresentationSection() {
     return (
-        <section style={{backgroundImage: "url(/images/llleaves.svg)", backgroundSize: "cover"}}
-                 className="flex-1 flex min-h-[calc(100vh-70px)]">
-            <div className="flex-1 flex flex-col items-center justify-center container mx-auto px-4">
+            <section className="mt-[100px] flex-1 flex flex-col items-center justify-center container mx-auto px-4">
                 <h2 className="text-6xl text-secondary font-bold text-center">En bref</h2>
                 <p className="text-center text-xl mb-4">Découvrez en quelques mots le salon EUROMOVE</p>
                 <div className="mt-8">
@@ -50,7 +48,6 @@ export default function PresentationSection() {
                         </p>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
     )
 }

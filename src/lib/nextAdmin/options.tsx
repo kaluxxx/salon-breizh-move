@@ -1,10 +1,10 @@
 import {NextAdminOptions} from "@premieroctet/next-admin";
-import {sendEmail} from "@/utils/email";
-import {isGranted} from "@/utils/auth";
+import {isGranted} from "@/lib/authUtils";
 import {NextRequest} from "next/server";
-import {prisma} from "../../prisma/lib/prisma";
-import {Role} from "@/types/role";
+import {prisma} from "../../../prisma/lib/prisma";
+import {Role} from "@/types/models/role";
 import ExhibitorDetailsDialog from "@/components/exhibitorDetailsDialog";
+import {emitter} from "next/client";
 
 export const options: NextAdminOptions = {
     title: "Espace administration",
@@ -106,13 +106,14 @@ export const options: NextAdminOptions = {
                         },
                         afterDb: async function (data, mode) {
                             if (mode === "create") {
-                                await sendEmail({
-                                    to: data.data.email,
-                                    from: "test@test.com",
-                                    subject: "Bienvenue sur notre site",
-                                    text: "Bienvenue",
-                                    html: "<h1>Bienvenue</h1>"
-                                })
+                                emitter.emit("user-created", data.data)
+                                // await sendEmail({
+                                //     to: data.data.email,
+                                //     from: "test@test.com",
+                                //     subject: "Bienvenue sur notre site",
+                                //     text: "Bienvenue",
+                                //     html: "<h1>Bienvenue</h1>"
+                                // })
                             }
                             return data;
                         }
@@ -190,7 +191,7 @@ export const options: NextAdminOptions = {
                 icon: "CalendarIcon",
                 list: {
                     display: ["name", "date", "type"],
-                    search: ["name", "date", "type.name"],
+                    search: ["name", "date", "types.name"],
                     fields: {
                         date: {
                             formatter: (date) => {
@@ -286,7 +287,7 @@ export const options: NextAdminOptions = {
                 icon: "CubeIcon",
                 list: {
                     display: ["stand", "name", "price"],
-                    search: ["name", "price", "stand.type"],
+                    search: ["name", "price", "stand.types"],
                     fields: {
                         price: {
                             formatter: (price) => {

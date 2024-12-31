@@ -1,7 +1,7 @@
 "use client";
 import React, {useState, createContext, ReactNode, useMemo, useCallback} from "react";
-import {Exhibitor} from "@/types/exhibitor";
-import {Cart} from "@/types/cart";
+import {Exhibitor} from "@/types/models/exhibitor";
+import {Cart} from "@/types/models/cart";
 
 interface ExhibitorRegistrationFormContextProps {
     children: ReactNode;

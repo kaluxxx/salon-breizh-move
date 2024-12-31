@@ -1,4 +1,5 @@
 import { createTransport } from "nodemailer";
+import {VerificationRequestParams} from "@/types/payloads/VerificationRequestParams";
 
 interface EmailParams {
     to: string;
@@ -32,23 +33,13 @@ export async function sendEmail({ to, from, subject, text, html }: EmailParams) 
     }
 }
 
-interface VerificationRequestParams {
-    identifier: string;
-    url: string;
-    provider: {
-        from: string;
-    };
-}
-
 export async function sendVerificationRequest({ identifier, url, provider }: VerificationRequestParams) {
     const { from } = provider;
-
-    // Créer le contenu du mail
-    const subject = `Se connecter à ${new URL(url).host}`;
+    const host = new URL(url).host
+    const subject = `Se connecter à ${host}`;
     const text = `Pour vous connecter, cliquez sur le lien ci-dessous :\n${url}`;
-    const html = generateLoginEmailHtml(url, new URL(url).host);
+    const html = generateLoginEmailHtml(url, host);
 
-    // Envoyer l'email
     await sendEmail({ to: identifier, from, subject, text, html });
 }
 

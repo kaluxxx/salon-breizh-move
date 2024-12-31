@@ -4,7 +4,7 @@ import {Button} from "@/components/ui/button";
 export default async function Page() {
 
     return (
-        <section className="flex flex-col justify-center items-center gap-4 min-h-[70vh] max-w-2xl mx-auto text-center">
+        <section className="flex flex-col justify-center items-center gap-4 max-w-2xl mx-auto text-center">
             <h1 className="text-4xl text-secondary font-bold">Pré-réserver votre stand</h1>
             <p>Réservez dès maintenant votre stand pour le salon du transport EUROMOVE</p>
             <p>Vous êtes exposant ?</p>

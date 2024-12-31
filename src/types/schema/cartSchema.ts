@@ -1,9 +1,9 @@
 import {z} from "zod";
-import {Cart} from "@/types/cart";
+import {Cart} from "@/types/models/cart";
 
 export const CartSchema = z.object({
     fees: z.number(),
-    stand: z.string().min(1, "Veuillez sélectionner un type de stand"),
+    stand: z.string().min(1, "Veuillez sélectionner un types de stand"),
     variants: z.array(
         z.object({
             id: z.string().optional(),

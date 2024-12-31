@@ -3,7 +3,7 @@ import {Form} from "@/components/ui/form";
 import {Button} from "@/components/ui/button";
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select";
 import {FieldError, FieldErrorsImpl, Merge, useFieldArray, useForm, UseFormRegister} from "react-hook-form";
-import {ExhibitorFormValues, ExhibitorSchema, getExhibitorDefaultValues} from "@/schema/exhibitorSchema";
+import {ExhibitorFormValues, ExhibitorSchema, getExhibitorDefaultValues} from "@/types/schema/exhibitorSchema";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {useExhibitorRegistrationFormContext} from "@/hooks/useRegistrationFormContext";
 import {FC, useEffect, useState} from "react";

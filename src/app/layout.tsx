@@ -6,8 +6,10 @@ import NavigationBar from "@/app/_navigation/NavigationBar";
 import {Toaster} from "@/components/ui/toaster";
 import Providers from "@/provider/providers";
 
+import "@/events/contactEvents"
+
 import {ABeeZee} from 'next/font/google'
-import {authOptions} from "@/utils/authOptions";
+import {authOptions} from "@/lib/authOptions";
 
 const roboto = ABeeZee({
     weight: '400',

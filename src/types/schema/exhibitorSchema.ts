@@ -1,8 +1,8 @@
 import {z} from "zod";
-import {AddressSchema} from "@/schema/addressSchema";
-import {PersonSchema, PersonSchemaWithoutEmailAndPhone} from "@/schema/personSchema";
-import {ShowGuideSchema} from "@/schema/showGuideSchema";
-import {Exhibitor} from "@/types/exhibitor";
+import {AddressSchema} from "@/types/schema/addressSchema";
+import {PersonSchema, PersonSchemaWithoutEmailAndPhone} from "@/types/schema/personSchema";
+import {ShowGuideSchema} from "@/types/schema/showGuideSchema";
+import {Exhibitor} from "@/types/models/exhibitor";
 
 export const ExhibitorSchema = z.object({
     companyName: z.string().min(1, {message: "Le nom de l'entreprise ne peut pas être vide"}),

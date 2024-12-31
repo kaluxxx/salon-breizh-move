@@ -1,4 +1,4 @@
-/** @type {import('next').NextConfig} */
+/** @types {import('next').NextConfig} */
 const nextConfig = {
     i18n: {
         // These are all the locales you want to support in

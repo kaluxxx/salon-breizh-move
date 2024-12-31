@@ -4,7 +4,7 @@ import DOMPurify from "dompurify";
 import {useExhibitorRegistrationFormContext} from "@/hooks/useRegistrationFormContext";
 import {useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
-import {CartFormValues, CartSchema, getCartDefaultValues} from "@/schema/cartSchema";
+import {CartFormValues, CartSchema, getCartDefaultValues} from "@/types/schema/cartSchema";
 import {useQuery} from "@tanstack/react-query";
 import {Form} from "@/components/ui/form";
 import {useRouter} from "next/navigation";
