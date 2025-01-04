@@ -1,15 +1,13 @@
 "use server";
 
-import { prisma } from "../../../prisma/lib/prisma";
-import { ExhibitorSchema } from "@/schema/exhibitorSchema"; // Typage à partir de votre schema
-import { CartSchema } from "@/schema/cartSchema";
-import { Civility } from "@prisma/client";
-import {Exhibitor} from "@/types/exhibitor";
-import {Cart} from "@/types/cart";
+import {prisma} from "../../../prisma/lib/prisma";
+import {ExhibitorSchema} from "@/types/schema/exhibitorSchema"; // Typage à partir de votre schema
+import {CartSchema} from "@/types/schema/cartSchema";
+import {Cart, Civility, Exhibitor} from "@prisma/client";
 
 const FEE_PER_EXHIBITOR = 250;
 
-export async function preRegister({ exhibitor, cart }: {
+export async function preRegister({exhibitor, cart}: {
     exhibitor: Exhibitor,
     cart: Cart
 }): Promise<{ message: string }> {
@@ -23,21 +21,21 @@ export async function preRegister({ exhibitor, cart }: {
     const parsedCart = CartSchema.safeParse(cart);
 
     if (!parsedExhibitor.success || !parsedCart.success) {
-        return { message: "Les informations fournies sont incorrectes" };
+        return {message: "Les informations fournies sont incorrectes"};
     }
 
     try {
         await createExhibitor(parsedExhibitor.data, parsedCart.data);
     } catch (e) {
-        return { message: `Une erreur est survenue lors de l'inscription de l'exposant : ${e}` };
+        return {message: `Une erreur est survenue lors de l'inscription de l'exposant : ${e}`};
     }
 
-    return { message: "Votre inscription a bien été enregistrée" };
+    return {message: "Votre inscription a bien été enregistrée"};
 }
 
 function validateData(exhibitor: any, cart: any) {
     if (!exhibitor || !cart) {
-        return { message: "Les informations fournies sont incorrectes" };
+        return {message: "Les informations fournies sont incorrectes"};
     }
     return null;
 }
@@ -95,7 +93,7 @@ function createShowGuideData(showGuide: any) {
             companyName: showGuide.companyName,
             address: createAddressData(showGuide.address),
             thematics: {
-                connect: showGuide.thematics.map((thematic: any) => ({ id: thematic }))
+                connect: showGuide.thematics.map((thematic: any) => ({id: thematic}))
             },
             businessDescription: showGuide.businessDescription,
             website: showGuide.website,

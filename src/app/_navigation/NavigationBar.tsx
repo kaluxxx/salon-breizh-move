@@ -1,12 +1,13 @@
 "use client";
+
 import {useState} from "react";
 import {usePathname} from "next/navigation";
 import {Session} from "next-auth";
 import Logo from "./Logo";
 import MenuButton from "./MenuButton";
 import MenuItem from "./MenuItem";
-import {Role} from "@/types/role";
-import {CustomSession} from "@/types/session";
+import {Role} from "@prisma/client";
+import {CustomSession} from "@/types/models/Session";
 
 export default function Navbar({session}: Readonly<{ session: Session | null }>) {
     const pathname = usePathname();
@@ -45,17 +46,15 @@ export default function Navbar({session}: Readonly<{ session: Session | null }>)
             id: 1,
             title: "Le salon",
             links: [
-                {id: 1, title: "En bref", path: "/en-bref"},
+                {id: 1, title: "En bref", path: "/overview"},
                 {id: 2, title: "Contact", path: "/contact"},
+                {id: 3, title: "Infos pratiques", path: "/practical-infos"},
             ],
         },
         {
             id: 2,
             title: "Exposer",
-            links: [
-                {id: 1, title: "Pré-réserver", path: "/reservation/exposant"},
-                {id: 2, title: "Pourquoi exposer ?", path: "#"},
-            ],
+            path: "/reservation",
         },
         {
             id: 3,
@@ -64,7 +63,6 @@ export default function Navbar({session}: Readonly<{ session: Session | null }>)
                 {id: 1, title: "Demande d'invitation", path: "#"},
                 {id: 2, title: "Liste des exposants", path: "#"},
                 {id: 3, title: "Carte intéractive", path: "#"},
-                {id: 4, title: "Infos pratiques", path: "#"},
             ],
         },
         {
@@ -92,16 +90,16 @@ export default function Navbar({session}: Readonly<{ session: Session | null }>)
     ];
 
     return (
-        <header className="sticky top-0 z-50 h-[70px] py-4 bg-white">
-            <nav className="container mx-auto w-full border-b md:border-0 items-center px-4 md:flex md:px-8">
-                <div className="flex items-center justify-between md:block">
+        <header className="sticky top-0 z-50 h-[70px] bg-white border-b md:border-0">
+            <nav className="container mx-auto w-full h-full items-center md:flex md:px-8">
+                <div className="h-full flex items-center justify-between md:block px-4">
                     <Logo/>
                     <div className="md:hidden">
                         <MenuButton onClick={() => setState(!state)}/>
                     </div>
                 </div>
-                <div className={`flex-1 pb-3 mt-8 md:block md:pb-0 md:mt-0 ${state ? "block" : "hidden"}`}>
-                    <ul className="justify-end items-center space-y-8 md:flex md:space-x-10 md:space-y-0">
+                <div className={`bg-white flex-1 pb-3 md:block md:pb-0 md:mt-0 ${state ? "block" : "hidden"}`}>
+                    <ul className="justify-end items-center p-4 space-y-8 md:flex md:space-x-10 md:space-y-0">
                         {menus.map((item) => (
                             <MenuItem key={item.id} item={item} openDropdownId={openDropdownId} setOpenDropdownId={setOpenDropdownId}/>
                         ))}

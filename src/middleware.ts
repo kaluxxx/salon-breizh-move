@@ -1,8 +1,8 @@
 import {NextResponse} from "next/server";
 import type {NextRequest} from "next/server";
-import {isGranted} from "@/utils/auth";
-import {Role} from "@/types/role";
+import {isGranted} from "@/lib/authUtils";
 import {getToken} from "next-auth/jwt";
+import {Role} from "@prisma/client";
 
 export type ProtectedRoutes = {
     [route: string]: Role[];
@@ -36,7 +36,7 @@ export default async function middleware(req: NextRequest) {
             return NextResponse.redirect(absoluteURL.toString(), {headers});
         }
     }
-    return NextResponse.next({headers});
+    return NextResponse.next({request: {headers}});
 }
 
 export const config = {

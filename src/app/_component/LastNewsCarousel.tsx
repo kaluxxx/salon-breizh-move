@@ -13,7 +13,7 @@ export default function LastNewsCarousel() {
         <Carousel
             opts={{align: "start", loop: true}}
             plugins={[plugin.current]}
-            className="mt-8"
+            className="w-5/6 mx-auto mt-8"
             onMouseEnter={plugin.current.stop}
             onMouseLeave={plugin.current.reset}
         >

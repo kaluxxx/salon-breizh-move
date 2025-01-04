@@ -1,7 +1,6 @@
 "use client";
 import React, {useState, createContext, ReactNode, useMemo, useCallback} from "react";
-import {Exhibitor} from "@/types/exhibitor";
-import {Cart} from "@/types/cart";
+import {Cart, Exhibitor} from "@prisma/client";
 
 interface ExhibitorRegistrationFormContextProps {
     children: ReactNode;

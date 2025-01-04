@@ -1,4 +1,4 @@
-import Form from "@/app/signIn/form";
+import Form from "@/app/signIn/_component/form";
 import Image from "next/image";
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
 
