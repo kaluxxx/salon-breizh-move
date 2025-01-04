@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function PresentationSection() {
     return (
             <section className="mt-[100px] flex-1 flex flex-col items-center justify-center container mx-auto px-4">
-                <h2 className="text-6xl text-secondary font-bold text-center">En bref</h2>
+                <h1 className="text-6xl text-secondary font-bold text-center">En bref</h1>
                 <p className="text-center text-xl mb-4">Découvrez en quelques mots le salon EUROMOVE</p>
                 <div className="mt-8">
                     <Image src="/images/salon-1.jpg"

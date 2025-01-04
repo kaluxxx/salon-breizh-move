@@ -1,6 +1,6 @@
 import {Separator} from "@/components/ui/separator";
-import ThematicsSection from "@/app/en-bref/_component/ThematicsSection";
-import PresentationSection from "@/app/en-bref/_component/PresentationSection";
+import ThematicsSection from "@/app/overview/_component/ThematicsSection";
+import PresentationSection from "@/app/overview/_component/PresentationSection";
 
 export default function Page() {
     return (

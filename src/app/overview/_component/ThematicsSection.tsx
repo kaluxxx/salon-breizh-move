@@ -1,7 +1,7 @@
 "use client";
 
 import {motion} from "framer-motion";
-import ThematicCard from "@/app/en-bref/_component/ThematicCard";
+import ThematicCard from "@/app/overview/_component/ThematicCard";
 
 export default function ThematicsSection() {
   const cardVariants = {
@@ -64,7 +64,7 @@ export default function ThematicsSection() {
       className="px-4 py-16 min-h-[calc(100vh-70px)]"
       style={{backgroundImage: "url(/images/wave-3.svg)", backgroundSize: "cover"}}
     >
-      <h2 className="text-4xl text-secondary font-bold text-center">Les différents secteurs</h2>
+      <h1 className="text-4xl text-secondary font-bold text-center">Les différents secteurs</h1>
       <p className="text-center mt-4">
         Découvrez les différents secteurs d'activités du salon EUROMOVE
       </p>
