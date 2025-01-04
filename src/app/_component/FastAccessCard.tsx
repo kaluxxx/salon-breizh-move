@@ -32,7 +32,7 @@ export default function FastAccessCard({
                 </div>
             </CardContent>
             <CardFooter className="flex justify-center gap-4 mb-4">
-                <LinkButton href={link} variant="secondary" title={linkText}>
+                <LinkButton href={link} variant="secondary">
                     {linkText}
                 </LinkButton>
             </CardFooter>

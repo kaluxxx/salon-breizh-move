@@ -24,7 +24,7 @@ export default function ThematicCard({title, description, image}: ThematicCardPr
           className="opacity-0 max-h-0 overflow-hidden group-hover:opacity-100 group-hover:max-h-[300px] transition-all duration-300 mt-4"
         >
           <p>{description.slice(0, 200)}...</p>
-          <LinkButton href="/overview/thematics" title="En savoir plus" className="mt-8">En savoir plus</LinkButton>
+          <LinkButton href="/overview/thematics" className="mt-8">En savoir plus</LinkButton>
         </CardContent>
       </div>
     </Card>
