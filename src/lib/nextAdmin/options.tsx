@@ -2,9 +2,9 @@ import {NextAdminOptions} from "@premieroctet/next-admin";
 import {isGranted} from "@/lib/authUtils";
 import {NextRequest} from "next/server";
 import {prisma} from "../../../prisma/lib/prisma";
-import {Role} from "@/types/models/role";
 import ExhibitorDetailsDialog from "@/components/exhibitorDetailsDialog";
 import {emitter} from "next/client";
+import {Role} from "@prisma/client";
 
 export const options: NextAdminOptions = {
     title: "Espace administration",
@@ -191,7 +191,7 @@ export const options: NextAdminOptions = {
                 icon: "CalendarIcon",
                 list: {
                     display: ["name", "date", "type"],
-                    search: ["name", "date", "types.name"],
+                    search: ["name", "date", "type.name"],
                     fields: {
                         date: {
                             formatter: (date) => {
@@ -287,7 +287,7 @@ export const options: NextAdminOptions = {
                 icon: "CubeIcon",
                 list: {
                     display: ["stand", "name", "price"],
-                    search: ["name", "price", "stand.types"],
+                    search: ["name", "price", "stand.type"],
                     fields: {
                         price: {
                             formatter: (price) => {
