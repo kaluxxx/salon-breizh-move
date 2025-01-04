@@ -29,6 +29,7 @@ export const createContact = async (contactFormValues: ContactFormValues): Promi
 
         return { status: HTTPStatus.CREATED, message: "Message de contact envoyé avec succès", data: contact };
     } catch (e) {
+        console.error("Error creating contact", e);
         return { status: HTTPStatus.INTERNAL_SERVER_ERROR, message: "Une erreur est survenue lors de l'enregistrement de votre message" };
     }
 };

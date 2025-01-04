@@ -1,4 +1,3 @@
-import {UserRoundPen} from "lucide-react";
 import ContactForm from "@/app/contact/_component/form";
 import Image from "next/image";
 
