@@ -3,9 +3,7 @@
 import {prisma} from "../../../prisma/lib/prisma";
 import {ExhibitorSchema} from "@/types/schema/exhibitorSchema"; // Typage à partir de votre schema
 import {CartSchema} from "@/types/schema/cartSchema";
-import {Civility} from "@prisma/client";
-import {Exhibitor} from "@/types/models/exhibitor";
-import {Cart} from "@/types/models/cart";
+import {Cart, Civility, Exhibitor} from "@prisma/client";
 
 const FEE_PER_EXHIBITOR = 250;
 
