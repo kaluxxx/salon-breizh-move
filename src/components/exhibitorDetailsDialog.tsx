@@ -3,7 +3,7 @@ import {ClientActionDialogContentProps} from "@premieroctet/next-admin";
 import {Button} from "@premieroctet/next-admin/components";
 import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@/components/ui/accordion";
 import Link from "next/link";
-import {getCivility} from "@/utils/format";
+import {getCivility} from "@/lib/format";
 import {useEffect, useState} from "react";
 import {getShowGuideById} from "@/app/action/showGuideAction";
 import {ShowGuide} from "@prisma/client";

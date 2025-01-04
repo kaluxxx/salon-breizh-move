@@ -643,6 +643,32 @@
       "required": [
         "name"
       ]
+    },
+    "Contact": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "firstName",
+        "lastName",
+        "email",
+        "message"
+      ]
     }
   },
   "type": "object",
@@ -694,6 +720,9 @@
     },
     "eventType": {
       "$ref": "#/definitions/EventType"
+    },
+    "contact": {
+      "$ref": "#/definitions/Contact"
     }
   }
 }
