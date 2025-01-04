@@ -3,7 +3,8 @@
 import {useRouter} from "next/navigation";
 import {useForm} from "react-hook-form";
 import {AuthFormValues, AuthSchema} from "@/types/schema/authSchema";
-import {signIn} from "next-auth/react";
+import {signIn, SignInResponse} from "next-auth/react";
+import {Response} from "@/types/payloads/Response";
 import {Form} from "@/components/ui/form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {FormFieldComponent} from "@/components/FormFieldComponent";
@@ -19,17 +20,16 @@ export default function LoginForm() {
         },
     });
 
-    const {loading, success, handleSubmit} = useFormHandler({
+    const {loading, success, handleSubmit} = useFormHandler<AuthFormValues, SignInResponse>({
         onSubmit: async ({email}) => {
             const result = await signIn('email', {email, redirect: false});
             if (result?.error) {
                 throw new Error(result.error);
             }
-            return result;
+            return { message: "Success", data: result } as Response<SignInResponse>;
         },
         onSuccess: () => router.push("/")
     });
-
     return (
         <Form {...form}>
             <form className="max-w-md mt-8 space-y-4" onSubmit={form.handleSubmit(handleSubmit)}>
