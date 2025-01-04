@@ -1,5 +1,4 @@
 import {z} from "zod";
-import {Cart} from "@/types/models/cart";
 
 export const CartSchema = z.object({
     fees: z.number(),
@@ -22,15 +21,3 @@ export const CartSchema = z.object({
 });
 
 export type CartFormValues = z.infer<typeof CartSchema>;
-
-export const getCartDefaultValues = (cart?: Cart) => ({
-    fees: cart?.fees ?? 0,
-    stand: cart?.stand ?? "",
-    variants: cart?.variants.map(variant => ({
-        id: variant.id ?? "",
-        name: variant.name ?? "",
-        quantity: variant.quantity ?? 0,
-        price: variant.price ?? 0
-    })) ?? [],
-    total: cart?.total ?? 0
-});

@@ -2,7 +2,6 @@ import {z} from "zod";
 import {AddressSchema} from "@/types/schema/addressSchema";
 import {PersonSchema, PersonSchemaWithoutEmailAndPhone} from "@/types/schema/personSchema";
 import {ShowGuideSchema} from "@/types/schema/showGuideSchema";
-import {Exhibitor} from "@/types/models/exhibitor";
 
 export const ExhibitorSchema = z.object({
     companyName: z.string().min(1, {message: "Le nom de l'entreprise ne peut pas être vide"}),
@@ -48,48 +47,3 @@ export const ExhibitorSchema = z.object({
 });
 
 export type ExhibitorFormValues = z.infer<typeof ExhibitorSchema>;
-
-const getDefaultAddress = (address?: Exhibitor["address"]) => ({
-    address: address?.address ?? "",
-    additionalAddress: address?.additionalAddress ?? "",
-    postalCode: address?.postalCode ?? "",
-    city: address?.city ?? "",
-    email: address?.email ?? "",
-    phone: address?.phone ?? "",
-});
-
-const getDefaultPerson = (person?: Exhibitor["companyManager"]) => ({
-    civility: person?.civility ?? "",
-    firstName: person?.firstName ?? "",
-    lastName: person?.lastName ?? "",
-    email: person?.email ?? "",
-    phone: person?.phone ?? "",
-});
-
-const getDefaultShowGuide = (showGuide?: Exhibitor["showGuide"]) => ({
-    companyName: showGuide?.companyName ?? "",
-    address: getDefaultAddress(showGuide?.address),
-    thematics: showGuide?.thematics ?? [],
-    businessDescription: showGuide?.businessDescription ?? "",
-    website: showGuide?.website ?? "",
-});
-
-export const getExhibitorDefaultValues = (exhibitor?: Exhibitor) => ({
-    companyName: exhibitor?.companyName ?? "",
-    address: getDefaultAddress(exhibitor?.address),
-    isSameBillingAddress: "false",
-    billingAddress: getDefaultAddress(exhibitor?.billingAddress),
-    siret: exhibitor?.siret ?? "",
-    tvaNumber: exhibitor?.tvaNumber ?? "",
-    apeCode: exhibitor?.apeCode ?? "",
-    companyManager: getDefaultPerson(exhibitor?.companyManager),
-    standManager: getDefaultPerson(exhibitor?.standManager),
-    onSiteContact: getDefaultPerson(exhibitor?.onSiteContact),
-    showGuide: getDefaultShowGuide(exhibitor?.showGuide),
-    hasSpecialRequest: exhibitor?.hasSpecialRequest ?? "",
-    closeTo: exhibitor?.closeTo ?? "",
-    awayFrom: exhibitor?.awayFrom ?? "",
-    comments: exhibitor?.comments ?? "",
-    hasCoExhibitors: exhibitor?.hasCoExhibitors ?? "",
-    coExhibitors: exhibitor?.coExhibitors ?? [],
-});
