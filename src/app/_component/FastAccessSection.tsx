@@ -41,7 +41,7 @@ export default function FastAccessSection() {
             headerDescription: "Consultez les informations pratiques",
             description: "Consultez les informations pratiques pour préparer votre venue à l'événement",
             icon: <Clock size={100} className="text-secondary"/>,
-            link: "/infos-pratiques",
+            link: "/practical-infos",
             linkText: "En savoir plus",
         },
         {

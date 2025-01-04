@@ -46,18 +46,15 @@ export default function Navbar({session}: Readonly<{ session: Session | null }>)
             id: 1,
             title: "Le salon",
             links: [
-                {id: 1, title: "En bref", path: "/en-bref"},
+                {id: 1, title: "En bref", path: "/overview"},
                 {id: 2, title: "Contact", path: "/contact"},
-                {id: 3, title: "Infos pratiques", path: "#"},
+                {id: 3, title: "Infos pratiques", path: "/practical-infos"},
             ],
         },
         {
             id: 2,
             title: "Exposer",
-            links: [
-                {id: 1, title: "Pré-réserver", path: "/reservation/exposant"},
-                {id: 2, title: "Pourquoi exposer ?", path: "#"},
-            ],
+            path: "/reservation",
         },
         {
             id: 3,

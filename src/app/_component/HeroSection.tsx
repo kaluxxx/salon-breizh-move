@@ -38,7 +38,7 @@ export default function HeroSection() {
                         </p>
                         <div className="flex space-x-4">
                             <Button asChild size="lg">
-                                <Link href="/en-bref">Découvrir</Link>
+                                <Link href="/overview">Découvrir</Link>
                             </Button>
                             <Button asChild size="lg" variant="secondary">
                                 <Link href={"/reservation/exposant"}>Pré-réserver</Link>
