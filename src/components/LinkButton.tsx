@@ -7,7 +7,6 @@ import {buttonVariants} from "@/components/ui/button";
 type LinkBtnProps = LinkProps &
     VariantProps<typeof buttonVariants> & {
     asChild?: boolean;
-    title: string;
     children: ReactNode;
     className?: string;
 };

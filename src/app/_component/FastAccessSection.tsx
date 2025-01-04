@@ -17,7 +17,7 @@ export default function FastAccessSection() {
             headerDescription: "Pré-inscrivez-vous pour participer à l'événement",
             description: "Pré-inscrivez-vous pour participer à l'événement et bénéficiez de nombreux avantages",
             icon: <Store size={100} className="text-secondary"/>,
-            link: "/reservation/exposant",
+            link: "/exhibit/exposant",
             linkText: "Pré-inscription",
         },
         {
@@ -25,7 +25,7 @@ export default function FastAccessSection() {
             headerDescription: "Pré-inscrivez-vous en tant que visiteur",
             description: "Pré-inscrivez-vous en tant que visiteur pour participer à l'événement et bénéficiez de nombreux avantages",
             icon: <UserRoundPen size={100} className="text-secondary"/>,
-            link: "/reservation/visiteur",
+            link: "/exhibit/visiteur",
             linkText: "Pré-inscription",
         },
         {
@@ -33,7 +33,7 @@ export default function FastAccessSection() {
             headerDescription: "Demandez votre accréditation presse",
             description: "Demandez votre accréditation presse pour participer à l'événement et bénéficiez de nombreux avantages",
             icon: <Newspaper size={100} className="text-secondary"/>,
-            link: "/reservation/presse",
+            link: "/exhibit/presse",
             linkText: "Demande d'accréditation",
         },
         {

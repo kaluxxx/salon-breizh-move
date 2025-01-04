@@ -54,7 +54,7 @@ export default function Navbar({session}: Readonly<{ session: Session | null }>)
         {
             id: 2,
             title: "Exposer",
-            path: "/reservation",
+            path: "/exhibit",
         },
         {
             id: 3,
