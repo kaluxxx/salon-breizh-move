@@ -13,7 +13,7 @@ const exhibitors = [
 
 export default function ExhibitorShowcase() {
     return (
-        <section className="py-20 bg-gray-50">
+        <section className="py-20 bg-secondary text-white">
             <div className="container mx-auto px-4">
                 <h2 className="text-3xl font-bold text-center mb-12">Découvrez Nos Exposants Phares</h2>
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -26,7 +26,7 @@ export default function ExhibitorShowcase() {
                                 height={100}
                                 className="mx-auto mb-4"
                             />
-                            <h3 className="text-xl font-semibold text-center mb-2">{exhibitor.name}</h3>
+                            <h3 className="text-black text-xl font-semibold text-center mb-2">{exhibitor.name}</h3>
                             <p className="text-gray-600 text-center">{exhibitor.description}</p>
                         </div>
                     ))}

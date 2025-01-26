@@ -1,21 +1,21 @@
 import Link from "next/link"
+import {Button} from "@/components/ui/button";
 
 export default function IntroSection() {
     return (
-        <section className="relative bg-gradient-to-r from-primary to-secondary text-white py-20">
-            <div className="container mx-auto px-4">
+        <section className="relative bg-primary text-white py-20 inset-0 bg-cover bg-center bg-no-repeat"
+                 style={{ backgroundImage: "url('/images/hero-image.webp')" }}>
+            <div className="absolute inset-0 bg-black bg-opacity-60" />
+            <div className="relative z-10 container mx-auto px-4">
                 <div className="flex flex-col lg:flex-row items-center">
                     <div className="lg:w-1/2 mb-10 lg:mb-0">
                         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 lg:leading-tight">
                             Découvrez le Futur de la Mobilité à EUROMOVE
                         </h1>
                         <p className="text-xl mb-8">Immergez-vous dans trois jours d'innovation, de networking et d'inspiration.</p>
-                        <Link
-                            href="#badge-request"
-                            className="bg-white text-primary px-8 py-3 rounded-full font-bold text-lg hover:bg-blue-100 transition duration-300"
-                        >
-                            Obtenez votre badge gratuit
-                        </Link>
+                        <Button asChild variant="outline">
+                            <Link href="#badge-request">Obtenez votre badge</Link>
+                        </Button>
                     </div>
                     <div className="lg:w-1/2">
                         <div className="grid grid-cols-2 gap-4">

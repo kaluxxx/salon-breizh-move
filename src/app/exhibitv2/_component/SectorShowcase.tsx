@@ -25,7 +25,7 @@ const sectors = [
 
 export default function SectorShowcase() {
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-primary text-white">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold text-center mb-12">Secteurs Représentés à EUROMOVE</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -34,8 +34,8 @@ export default function SectorShowcase() {
               key={index}
               className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition duration-300 flex flex-col items-center"
             >
-              <sector.icon className="w-16 h-16 text-secondary mb-4" />
-              <h3 className="text-xl font-semibold text-center mb-2">{sector.name}</h3>
+              <sector.icon className="w-16 h-16 text-primary mb-4" />
+              <h3 className="text-black text-xl font-semibold text-center mb-2">{sector.name}</h3>
               <p className="text-gray-600 text-center">{sector.description}</p>
             </div>
           ))}
