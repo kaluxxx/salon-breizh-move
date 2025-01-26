@@ -1,4 +1,3 @@
-import Image from "next/image"
 import { Truck, Bus, Ambulance, Cog } from "lucide-react"
 
 const sectors = [

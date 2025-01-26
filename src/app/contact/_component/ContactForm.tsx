@@ -5,14 +5,13 @@ import { useForm } from "react-hook-form"
 import { type ContactFormValues, ContactSchema } from "@/types/schema/contactSchema"
 import { createContact } from "@/app/action/contactActions"
 import { HTTPStatus } from "@/types/enums/HTTPStatus"
-import { Form, FormItem, FormLabel, FormControl, FormDescription, FormMessage } from "@/components/ui/form"
+import { Form } from "@/components/ui/form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { FormFieldComponent } from "@/components/FormFieldComponent"
 import { FormButton } from "@/components/FormButton"
 import { useFormHandler } from "@/hooks/useFormHandler"
 import type { Contact } from "@prisma/client"
 import { motion } from "framer-motion"
-import {useInView} from "react-intersection-observer";
 
 export default function ContactForm() {
   const router = useRouter()

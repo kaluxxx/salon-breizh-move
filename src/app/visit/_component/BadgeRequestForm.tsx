@@ -12,7 +12,7 @@ export default function BadgeRequestForm() {
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [submitResult, setSubmitResult] = useState<{ success: boolean; message: string } | null>(null)
 
-    const onSubmit = async (data: any) => {
+    const onSubmit = async () => {
         setIsSubmitting(true)
         // Simuler un appel API
         await new Promise((resolve) => setTimeout(resolve, 1000))

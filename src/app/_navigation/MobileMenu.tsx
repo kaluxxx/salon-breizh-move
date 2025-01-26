@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
-import { Menu, X, ChevronDown, ChevronUp } from "lucide-react"
+import { Menu, ChevronDown, ChevronUp } from "lucide-react"
 import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 
