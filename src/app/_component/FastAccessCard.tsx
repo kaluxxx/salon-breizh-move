@@ -1,41 +1,45 @@
-import React from "react";
-import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from "@/components/ui/card";
-import LinkButton from "@/components/LinkButton";
+import type React from "react"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
 interface FastAccessCardProps {
-    title: string;
-    headerDescription: string;
-    description: string;
-    icon: React.ReactNode;
-    link: string;
-    linkText: string;
+  title: string
+  headerDescription: string
+  description: string
+  icon: React.ReactNode
+  link: string
+  linkText: string
 }
 
 export default function FastAccessCard({
-                                           title,
-                                           headerDescription,
-                                           description,
-                                           icon,
-                                           link,
-                                           linkText
-                                       }: FastAccessCardProps) {
-    return (
-        <Card className="max-w-md h-96 flex flex-col justify-between">
-            <CardHeader className="flex flex-col justify-center items-center">
-                <CardTitle className="text-3xl">{title}</CardTitle>
-                <CardDescription>{headerDescription}</CardDescription>
-            </CardHeader>
-            <CardContent>
-                <div className="flex text-center flex-col items-center space-y-4">
-                    {icon}
-                    <p>{description}</p>
-                </div>
-            </CardContent>
-            <CardFooter className="flex justify-center gap-4 mb-4">
-                <LinkButton href={link} variant="secondary">
-                    {linkText}
-                </LinkButton>
-            </CardFooter>
-        </Card>
-    )
+  title,
+  headerDescription,
+  description,
+  icon,
+  link,
+  linkText,
+}: FastAccessCardProps) {
+  return (
+    <Card className="h-full flex flex-col justify-between hover:shadow-lg transition duration-300">
+      <CardHeader>
+        <div className="flex items-center space-x-4">
+          <div className="bg-primary/10 p-3 rounded-full">{icon}</div>
+          <div>
+            <CardTitle>{title}</CardTitle>
+            <CardDescription>{headerDescription}</CardDescription>
+          </div>
+        </div>
+      </CardHeader>
+      <CardContent>
+        <p className="text-muted-foreground">{description}</p>
+      </CardContent>
+      <CardFooter>
+        <Button asChild className="w-full">
+          <Link href={link}>{linkText}</Link>
+        </Button>
+      </CardFooter>
+    </Card>
+  )
 }
+

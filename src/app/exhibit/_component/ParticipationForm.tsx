@@ -49,7 +49,7 @@ export default function ParticipationForm() {
                 </div>
                 <FormFieldComponent control={form.control} name="email" label="Email" placeholder="Votre email"
                                     required/>
-                <FormButton loading={loading} success={success} text="Demande de devis"/>
+                <FormButton loading={loading} success={success} text="Demande de devis" variant="secondary"/>
             </form>
         </Form>
     )

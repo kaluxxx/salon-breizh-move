@@ -5,9 +5,10 @@ interface FormButtonProps {
     loading: boolean;
     success: boolean | null;
     text: string;
+    variant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link" | null | undefined;
 }
 
-export function FormButton({loading, success, text}: FormButtonProps) {
+export function FormButton({loading, success, text, variant}: FormButtonProps) {
     function getIcon() {
         if (loading) {
             return <Loader className="animate-spin"/>;
@@ -16,7 +17,7 @@ export function FormButton({loading, success, text}: FormButtonProps) {
     }
 
     return (
-        <Button>
+        <Button variant={variant}>
             {getIcon()}
             <span>{text}</span>
         </Button>

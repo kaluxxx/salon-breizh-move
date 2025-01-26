@@ -1,42 +1,53 @@
-import Image from "next/image";
-import Link from "next/link";
-import {Button} from "@/components/ui/button";
-import CarouselHero from "@/components/CarouselHero";
+"use client"
 
+import Image from "next/image"
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { motion } from "framer-motion"
 
 export default function HeroSection() {
-    return (
-        <section
-            className="xl:min-h-[calc(100vh-70px)] flex max-lg:flex-col items-center justify-between lg:p-8">
-            <div className="flex h-full w-full xl:w-1/2">
-                <CarouselHero/>
+  return (
+    <section className="relative bg-primary text-primary-foreground py-20">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col lg:flex-row items-center">
+          <motion.div
+            className="lg:w-1/2 mb-10 lg:mb-0"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4">
+              EUROMOVE : Le Futur du Transport et de la Mobilité Durable
+            </h1>
+            <p className="text-xl mb-8">
+              Rejoignez le rendez-vous incontournable des leaders de l'industrie pour façonner l'avenir de la mobilité.
+            </p>
+            <div className="flex space-x-4">
+              <Button asChild size="lg" variant="secondary">
+                <Link href="/overview">Découvrir</Link>
+              </Button>
+              <Button asChild size="lg" variant="outline">
+                <Link href="/exhibit">Exposer</Link>
+              </Button>
             </div>
-            <div
-                className="w-full xl:w-1/2 text-xl text-gray-700 p-12">
-                <div className="max-w-6xl mx-auto flex flex-col justify-center items-center gap-8">
-                    <Image src="/images/logo.png" alt="Logo" width={200} height={200} className="w-96 h-auto lg:w-72"/>
-                    <h1 className="text-4xl text-center text-secondary font-bold">Le rendez-vous incontournable des
-                        leaders du transport
-                        et de la mobilité durable</h1>
-                    <div className="flex flex-col items-center text-center space-y-4">
-                        <p>Bienvenue au Salon du Transport EUROMOVE</p>
-                        <p>L’événement de référence pour tous les acteurs de la mobilité</p>
-                        <p>Rejoignez-nous pour imaginer ensemble le futur du transport ainsi que pour un moment
-                            d’échange et
-                            d’innovation, au cœur des défis et transformations qui redéfinissent le monde du transport
-                            aujourd’hui et pour demain !
-                        </p>
-                        <div className="flex space-x-4">
-                            <Button asChild size="lg">
-                                <Link href="/overview">Découvrir</Link>
-                            </Button>
-                            <Button asChild size="lg" variant="secondary">
-                                <Link href={"/reservation/exposant"}>Exposer ou Visiter</Link>
-                            </Button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    )
+          </motion.div>
+          <motion.div
+            className="lg:w-1/2"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <Image
+              src="/images/hero-image.webp"
+              alt="EUROMOVE Salon"
+              width={600}
+              height={400}
+              className="rounded-lg shadow-2xl"
+            />
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  )
 }
+

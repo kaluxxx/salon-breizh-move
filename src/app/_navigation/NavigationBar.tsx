@@ -63,7 +63,7 @@ export default function Navbar({session}: Readonly<{ session: Session | null }>)
             id: 3,
             title: "Visiter",
             links: [
-                {id: 1, title: "Demande d'invitation", path: "#"},
+                {id: 1, title: "Demande d'invitation", path: "/visit"},
                 {id: 2, title: "Liste des exposants", path: "#"},
                 {id: 3, title: "Carte intéractive", path: "#"},
             ],
