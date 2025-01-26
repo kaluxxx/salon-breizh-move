@@ -2,7 +2,7 @@ import ParticipationForm from "@/app/exhibit/_component/ParticipationForm";
 
 export default function ParticipationSection() {
     return (
-        <section className="flex flex-col gap-8 my-8 container mx-auto">
+        <section className="flex flex-col gap-8 p-4 mt-8 mb-16 container mx-auto" id="pre-register">
             <h2 className="text-primary text-4xl font-bold">Participez à EUROMOVE</h2>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                 <div className="flex flex-col gap-4">
@@ -19,11 +19,8 @@ export default function ParticipationSection() {
                         Chaque stand inclut :
                     </p>
                     <ul className="list-disc list-inside space-y-2">
-                        <li className="text-lg">Un emplacement premium dans la zone d’exposition.</li>
+                        <li className="text-lg">Un emplacement adapté à vos besoins</li>
                         <li className="text-lg">Des services inclus, comme l’électricité et le mobilier de base.
-                        </li>
-                        <li className="text-lg">Un accès exclusif aux événements réservés aux exposants.</li>
-                        <li className="text-lg">Un accompagnement personnalisé pour optimiser votre participation.
                         </li>
                     </ul>
                     <p className="text-lg mt-4">
@@ -41,6 +38,7 @@ export default function ParticipationSection() {
                     <ParticipationForm/>
                 </div>
             </div>
+
         </section>
     )
 }

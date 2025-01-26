@@ -76,6 +76,19 @@ model VerificationToken {
   @@map("breizhmove_verificationtokens")
 }
 
+model QuoteRequest {
+  id        String   @id @default(cuid())
+  company   String
+  name      String
+  function  String
+  email     String
+  phone     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("breizhmove_quote_requests")
+}
+
 model Person {
   id                       String      @id @default(cuid())
   civility                 Civility

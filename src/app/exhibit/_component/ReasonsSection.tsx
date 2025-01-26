@@ -1,4 +1,3 @@
-import LinkButton from "@/components/LinkButton";
 import ReasonCard from "@/app/exhibit/_component/ReasonCard";
 
 export default function ReasonsSection() {
@@ -24,7 +23,7 @@ export default function ReasonsSection() {
     ];
 
     return (
-        <section className="flex flex-col gap-8 my-8 container mx-auto">
+        <section className="flex flex-col gap-8 my-8 p-4 container mx-auto">
             <h2 className="text-primary text-4xl font-bold">3 raisons d’exposer à Euromove</h2>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 {reasons.map((reason, index) => (
@@ -32,9 +31,6 @@ export default function ReasonsSection() {
                                 imageAlt={reason.imageAlt} key={index}/>
                 ))}
             </div>
-            <LinkButton className="bg-secondary text-white w-fit mx-auto" href='/#pre-register' size="lg">
-                Je souhaite exposer
-            </LinkButton>
         </section>
     )
 }

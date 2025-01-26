@@ -154,6 +154,45 @@
         "expires"
       ]
     },
+    "QuoteRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "company": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "function": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "company",
+        "name",
+        "function",
+        "email",
+        "phone",
+        "updatedAt"
+      ]
+    },
     "Person": {
       "type": "object",
       "properties": {
@@ -684,6 +723,9 @@
     },
     "verificationToken": {
       "$ref": "#/definitions/VerificationToken"
+    },
+    "quoteRequest": {
+      "$ref": "#/definitions/QuoteRequest"
     },
     "person": {
       "$ref": "#/definitions/Person"

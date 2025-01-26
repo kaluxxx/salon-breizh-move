@@ -8,16 +8,17 @@ interface FormFieldComponentProps {
     label: string;
     placeholder: string;
     type?: "input" | "textarea";
+    required?: boolean;
 }
 
-export function FormFieldComponent({control, name, label, placeholder, type = "input"}: FormFieldComponentProps) {
+export function FormFieldComponent({control, name, label, placeholder, type = "input", required}: FormFieldComponentProps) {
     return (
         <FormField
             control={control}
             name={name}
             render={({field}) => (
                 <FormItem>
-                    <FormLabel>{label}</FormLabel>
+                    <FormLabel required={required}>{label}</FormLabel>
                     <FormControl>
                         {type === "input" ? (
                             <Input placeholder={placeholder} {...field} />
