@@ -11,6 +11,40 @@ import { Role } from "@prisma/client"
 import type { CustomSession } from "@/types/models/Session"
 import { motion } from "framer-motion"
 
+const menuItems = [
+    {
+        title: "Le salon",
+        path: "/overview",
+        submenu: [
+            { title: "En bref", path: "/overview" },
+            { title: "Contact", path: "/contact" },
+            { title: "Infos pratiques", path: "/practical-infos" },
+        ],
+    },
+    {
+        title: "Exposer",
+        path: "/exhibitv2",
+    },
+    {
+        title: "Visiter",
+        path: "/visit",
+        submenu: [
+            { title: "Demande d'invitation", path: "/visit" },
+            { title: "Liste des exposants", path: "/exhibitors" },
+            { title: "Plan interactif", path: "/interactive-map" },
+        ],
+    },
+    {
+        title: "Programme",
+        path: "/program",
+        submenu: [
+            { title: "Conférences", path: "/program/conferences" },
+            { title: "Ateliers", path: "/program/workshops" },
+        ],
+    },
+    { title: "Presse", path: "/press" },
+]
+
 export default function Navbar({ session }: Readonly<{ session: Session | null }>) {
     const pathname = usePathname()
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -38,44 +72,6 @@ export default function Navbar({ session }: Readonly<{ session: Session | null }
     }
 
     const { title: accountLinkTitle, path: accountLinkPath } = getAccountLink(!!session, (session as CustomSession)?.role)
-
-    const menuItems = [
-        {
-            title: "Le salon",
-            path: "/overview",
-            submenu: [
-                { title: "En bref", path: "/overview" },
-                { title: "Contact", path: "/contact" },
-                { title: "Infos pratiques", path: "/practical-infos" },
-            ],
-        },
-        {
-            title: "Exposer",
-            path: "/exhibit",
-            submenu: [
-                { title: "Réserver un stand", path: "/exhibit" },
-                { title: "Tarifs", path: "/exhibit/pricing" },
-            ],
-        },
-        {
-            title: "Visiter",
-            path: "/visit",
-            submenu: [
-                { title: "Demande d'invitation", path: "/visit" },
-                { title: "Liste des exposants", path: "/exhibitors" },
-                { title: "Plan interactif", path: "/interactive-map" },
-            ],
-        },
-        {
-            title: "Programme",
-            path: "/program",
-            submenu: [
-                { title: "Conférences", path: "/program/conferences" },
-                { title: "Ateliers", path: "/program/workshops" },
-            ],
-        },
-        { title: "Presse", path: "/press" },
-    ]
 
     return (
         <motion.header

@@ -33,7 +33,7 @@ export default function HeroSection() {
                   <Link href="/overview">Découvrir</Link>
                 </Button>
                 <Button asChild size="lg" variant="outline">
-                  <Link href="/exhibit">Exposer</Link>
+                  <Link href="/exhibitv2">Exposer</Link>
                 </Button>
               </div>
             </motion.div>

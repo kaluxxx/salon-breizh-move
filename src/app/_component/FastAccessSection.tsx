@@ -10,7 +10,7 @@ const fastAccessItems = [
     title: "Exposer",
     description: "Réservez votre stand",
     icon: Store,
-    link: "/exhibit",
+    link: "/exhibitv2",
   },
   {
     title: "Visiteurs",
