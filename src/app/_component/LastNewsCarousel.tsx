@@ -2,21 +2,10 @@
 
 import {Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious} from "@/components/ui/carousel";
 import * as React from "react";
-import Autoplay from "embla-carousel-autoplay";
 
 export default function LastNewsCarousel() {
-    const plugin = React.useRef(
-        Autoplay({delay: 2000, stopOnInteraction: true})
-    )
-
     return (
-        <Carousel
-            opts={{align: "start", loop: true}}
-            plugins={[plugin.current]}
-            className="w-5/6 mx-auto mt-8"
-            onMouseEnter={plugin.current.stop}
-            onMouseLeave={plugin.current.reset}
-        >
+        <Carousel opts={{align: "start", loop: true}} className="w-5/6 mx-auto mt-8">
             <CarouselContent>
                 {Array.from({length: 24}).map((_, index) => (
                     <CarouselItem key={index} className="flex flex-col md:flex-row gap-4">

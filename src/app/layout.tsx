@@ -35,7 +35,7 @@ export default async function RootLayout({
         >
         <Providers>
             <NavigationBar session={session}/>
-            <main className="min-h-[calc(100vh-70px)] flex flex-col">
+            <main className="min-h-[calc(100vh-70px)] flex flex-col justify-start">
                 {children}
             </main>
             <Toaster/>

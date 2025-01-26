@@ -54,7 +54,10 @@ export default function Navbar({session}: Readonly<{ session: Session | null }>)
         {
             id: 2,
             title: "Exposer",
-            path: "/exhibit",
+            links: [
+                {id: 1, title: "Exposer", path: "/exhibit"},
+                {id: 2, title: "Se connecter", path: "/signIn"},
+            ],
         },
         {
             id: 3,
@@ -69,18 +72,13 @@ export default function Navbar({session}: Readonly<{ session: Session | null }>)
             id: 4,
             title: "Conférences et animations",
             links: [
-                {id: 1, title: "Programme", path: "#"},
-                {id: 2, title: "Animations", path: "#"},
+                {id: 1, title: "Programme", path: "#"}
             ],
         },
         {
             id: 5,
             title: "Presse",
-            links: [
-                {id: 1, title: "Partenaires médias", path: "#"},
-                {id: 2, title: "Accréditation presse", path: "#"},
-                {id: 3, title: "Contact presse", path: "#"},
-            ],
+            path: "/#",
         },
         {
             id: 6,
@@ -90,16 +88,16 @@ export default function Navbar({session}: Readonly<{ session: Session | null }>)
     ];
 
     return (
-        <header className="sticky top-0 z-50 h-[70px] bg-white border-b md:border-0">
-            <nav className="container mx-auto w-full h-full items-center md:flex md:px-8">
-                <div className="h-full flex items-center justify-between md:block px-4">
+        <header className="sticky top-0 z-50 h-[70px] bg-white border-b lg:border-0">
+            <nav className="container mx-auto w-full h-full items-center lg:flex lg:px-8">
+                <div className="h-full flex items-center justify-between lg:block px-4">
                     <Logo/>
-                    <div className="md:hidden">
+                    <div className="lg:hidden">
                         <MenuButton onClick={() => setState(!state)}/>
                     </div>
                 </div>
-                <div className={`bg-white flex-1 pb-3 md:block md:pb-0 md:mt-0 ${state ? "block" : "hidden"}`}>
-                    <ul className="justify-end items-center p-4 space-y-8 md:flex md:space-x-10 md:space-y-0">
+                <div className={`bg-white flex-1 pb-3 lg:block lg:pb-0 lg:mt-0 ${state ? "block" : "hidden"}`}>
+                    <ul className="justify-end items-center p-4 space-y-8 lg:flex lg:space-x-10 lg:space-y-0">
                         {menus.map((item) => (
                             <MenuItem key={item.id} item={item} openDropdownId={openDropdownId} setOpenDropdownId={setOpenDropdownId}/>
                         ))}

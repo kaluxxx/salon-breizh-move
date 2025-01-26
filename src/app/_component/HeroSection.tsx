@@ -1,30 +1,20 @@
 import Image from "next/image";
-import {Button} from "@/components/ui/button";
 import Link from "next/link";
+import {Button} from "@/components/ui/button";
+import CarouselHero from "@/components/CarouselHero";
+
 
 export default function HeroSection() {
     return (
         <section
-            className="min-h-[calc(100vh-70px)] flex max-lg:flex-col items-center justify-between">
-            <div
-                className="relative flex h-full w-full md:w-1/2 before:absolute before:top-0 before:left-0 before:h-full before:w-full before:z-10">
-                <Image
-                    src="/images/camion.jpg"
-                    alt="Hero"
-                    width={1920}
-                    height={1080}
-                    className="z-20 object-cover w-full h-[calc(100vh-70px)]"
-                />
+            className="xl:min-h-[calc(100vh-70px)] flex max-lg:flex-col items-center justify-between lg:p-8">
+            <div className="flex h-full w-full xl:w-1/2">
+                <CarouselHero/>
             </div>
             <div
-                className="w-full md:w-1/2 text-xl text-gray-700 px-12 py-8">
-                <div className="max-w-2xl mx-auto flex flex-col justify-center items-center gap-8">
-                    <Image src="/images/logo.png" alt="Logo" width={250} height={100}/>
-                    <div className="w-1/2 h-0.5 bg-primary"/>
-                    <div className="w-1/3 h-0.5 bg-primary"/>
-                    <div className="w-1/4 h-0.5 bg-primary"/>
-                    <div className="w-1/5 h-0.5 bg-primary"/>
-                    <div className="w-1/6 h-0.5 bg-primary"/>
+                className="w-full xl:w-1/2 text-xl text-gray-700 p-12">
+                <div className="max-w-6xl mx-auto flex flex-col justify-center items-center gap-8">
+                    <Image src="/images/logo.png" alt="Logo" width={200} height={200} className="w-96 h-auto lg:w-72"/>
                     <h1 className="text-4xl text-center text-secondary font-bold">Le rendez-vous incontournable des
                         leaders du transport
                         et de la mobilité durable</h1>
@@ -41,7 +31,7 @@ export default function HeroSection() {
                                 <Link href="/overview">Découvrir</Link>
                             </Button>
                             <Button asChild size="lg" variant="secondary">
-                                <Link href={"/reservation/exposant"}>Pré-réserver</Link>
+                                <Link href={"/reservation/exposant"}>Exposer ou Visiter</Link>
                             </Button>
                         </div>
                     </div>

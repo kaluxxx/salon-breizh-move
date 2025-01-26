@@ -37,11 +37,28 @@ export default function ContactForm() {
 
     return (
         <Form {...form}>
-            <form className="max-w-2xl mx-auto mt-8 space-y-4" onSubmit={form.handleSubmit(handleSubmit)}>
-                <FormFieldComponent control={form.control} name="firstName" label="Prénom" placeholder="Votre prénom"/>
-                <FormFieldComponent control={form.control} name="lastName" label="Nom" placeholder="Votre nom"/>
-                <FormFieldComponent control={form.control} name="email" label="Email" placeholder="Votre email"/>
-                <FormFieldComponent control={form.control} name="message" label="Message" placeholder="Votre message" type="textarea"/>
+            <form className="flex-1 w-full lg:max-w-xl mx-auto space-y-4" onSubmit={form.handleSubmit(handleSubmit)}>
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                    <FormFieldComponent control={form.control} name="firstName" label="Prénom"
+                                        placeholder="Votre prénom" required/>
+                    <FormFieldComponent control={form.control} name="lastName" label="Nom" placeholder="Votre nom"
+                                        required/>
+                </div>
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                    <FormFieldComponent control={form.control} name="email" label="Email" placeholder="Votre email"
+                                        required/>
+                    <FormFieldComponent control={form.control} name="companyName" label="Nom de l'entreprise"
+                                        placeholder="Nom de l'entreprise"/>
+
+                </div>
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                    <FormFieldComponent control={form.control} name="companyFunction" label="Fonction"
+                                        placeholder="Votre fonction"/>
+                    <FormFieldComponent control={form.control} name="phone" label="Téléphone"
+                                        placeholder="Votre téléphone"/>
+                </div>
+                <FormFieldComponent control={form.control} name="message" label="Message" placeholder="Votre message"
+                                    type="textarea" required/>
                 <FormButton loading={loading} success={success} text="Envoyer"/>
             </form>
         </Form>

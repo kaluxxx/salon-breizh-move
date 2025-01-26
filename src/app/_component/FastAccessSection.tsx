@@ -13,9 +13,9 @@ export default function FastAccessSection() {
 
     const fastAccess = [
         {
-            title: "Pré-inscriptions",
-            headerDescription: "Pré-inscrivez-vous pour participer à l'événement",
-            description: "Pré-inscrivez-vous pour participer à l'événement et bénéficiez de nombreux avantages",
+            title: "Exposer",
+            headerDescription: "Pré-inscrivez-vous pour participer au salon",
+            description: "Pré-inscrivez-vous pour participer au salon et bénéficiez de nombreux avantages",
             icon: <Store size={100} className="text-secondary"/>,
             link: "/exhibit/exposant",
             linkText: "Pré-inscription",
@@ -23,15 +23,15 @@ export default function FastAccessSection() {
         {
             title: "Visiteurs",
             headerDescription: "Pré-inscrivez-vous en tant que visiteur",
-            description: "Pré-inscrivez-vous en tant que visiteur pour participer à l'événement et bénéficiez de nombreux avantages",
+            description: "Téléchargez votre badge visiteur pour participer au salon",
             icon: <UserRoundPen size={100} className="text-secondary"/>,
             link: "/exhibit/visiteur",
-            linkText: "Pré-inscription",
+            linkText: "Obtenir mon badge",
         },
         {
             title: "Presse",
             headerDescription: "Demandez votre accréditation presse",
-            description: "Demandez votre accréditation presse pour participer à l'événement et bénéficiez de nombreux avantages",
+            description: "Demandez votre accréditation presse pour participer à Euromove et bénéficiez de nombreux avantages",
             icon: <Newspaper size={100} className="text-secondary"/>,
             link: "/exhibit/presse",
             linkText: "Demande d'accréditation",
@@ -46,11 +46,11 @@ export default function FastAccessSection() {
         },
         {
             title: "Contact",
-            headerDescription: "Contactez-nous",
-            description: "Contactez-nous pour toute question ou demande d'information",
-            icon: <Mail size={100} className="text-secondary"/>,
+            headerDescription: "Écrivez-nous",
+            description: "Vous avez des questions ? Nous sommes là pour vous répondre.",
+            icon: <Mail size={100} className="text-secondary" />,
             link: "/contact",
-            linkText: "Nous contacter",
+            linkText: "Envoyer un message",
         },
     ];
 
