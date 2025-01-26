@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { Card, CardContent } from "@/components/ui/card"
-import { Truck, Leaf, Bus, Ambulance, Globe } from "lucide-react"
+import { Truck, Leaf, Bus, Ambulance } from "lucide-react"
 import {useInView} from "react-intersection-observer";
 
 const themes = [
