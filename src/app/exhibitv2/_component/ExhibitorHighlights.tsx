@@ -4,17 +4,17 @@ const highlights = [
     {
         title: "Visibilité Maximale",
         description: "Présentez vos produits et services à plus de 15 000 professionnels du secteur.",
-        image: "/images/visibility.jpg",
+        image: "/images/salon-1.jpg",
     },
     {
         title: "Networking Ciblé",
         description: "Rencontrez des décideurs clés et établissez des partenariats stratégiques.",
-        image: "/images/networking.jpg",
+        image: "/images/salon-1.jpg",
     },
     {
         title: "Innovation Showcase",
         description: "Démontrez vos dernières innovations dans un environnement dédié à la mobilité du futur.",
-        image: "/images/innovation.jpg",
+        image: "/images/salon-1.jpg",
     },
 ]
 

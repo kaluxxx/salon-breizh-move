@@ -1,12 +1,11 @@
-import {Menu} from "lucide-react";
+import { Menu } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
-export default function MenuButton({onClick}: {onClick: () => void}) {
+export default function MenuButton({ onClick }: { onClick: () => void }) {
     return (
-        <button
-            className="text-gray-700 outline-none p-2 rounded-md focus:border-gray-400 focus:border"
-            onClick={onClick}
-        >
-            <Menu/>
-        </button>
-    );
+        <Button variant="ghost" size="icon" onClick={onClick} aria-label="Menu">
+            <Menu className="h-6 w-6" />
+        </Button>
+    )
 }
+

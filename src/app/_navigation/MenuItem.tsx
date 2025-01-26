@@ -1,46 +1,69 @@
-import Link from "next/link";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { ChevronDown } from "lucide-react";
-import { Fragment } from "react";
+"use client"
 
-export default function MenuItem({ item, openDropdownId, setOpenDropdownId }: any) {
-    return (
-        <li
-            key={item.id}
-            className="relative group cursor-pointer"
-        >
-            {item.links ? (
+import Link from "next/link"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import { ChevronDown } from "lucide-react"
+import { motion } from "framer-motion"
+
+interface MenuItemProps {
+    item: {
+        id: number
+        title: string
+        path?: string
+        links?: Array<{
+            id: number
+            title: string
+            path: string
+        }>
+    }
+    openDropdownId: number | null
+    setOpenDropdownId: (id: number | null) => void
+}
+
+export default function MenuItem({ item, openDropdownId, setOpenDropdownId }: MenuItemProps) {
+    if (item.links) {
+        return (
+            <li className="relative">
                 <DropdownMenu
                     open={openDropdownId === item.id}
-                    onOpenChange={(isOpen) => setOpenDropdownId(isOpen ? item.id : null)}
+                    onOpenChange={(open) => setOpenDropdownId(open ? item.id : null)}
                 >
                     <DropdownMenuTrigger
+                        className="flex items-center gap-1 text-sm font-medium transition-colors hover:text-primary"
                         onMouseEnter={() => setOpenDropdownId(item.id)}
-                        asChild
                     >
-            <span className="flex items-center cursor-pointer relative">
-              {item.title}
-                <ChevronDown className="ml-1" />
-                <span className="absolute bottom-[-4px] left-0 h-[3px] bg-primary transition-all w-full"></span>
-            </span>
+                        {item.title}
+                        <ChevronDown className="h-4 w-4" />
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent onMouseLeave={() => setOpenDropdownId(null)} align="start">
-                        {item.links.map((link: any) => (
-                            <Fragment key={link.id}>
-                                <DropdownMenuItem className="focus:bg-primary focus:text-white">
-                                    <Link href={link.path}>{link.title}</Link>
-                                </DropdownMenuItem>
-                                {link.id !== item.links.length && <DropdownMenuSeparator />}
-                            </Fragment>
+                    <DropdownMenuContent
+                        onMouseLeave={() => setOpenDropdownId(null)}
+                        className="w-56 bg-background/95 backdrop-blur-sm"
+                    >
+                        {item.links.map((link) => (
+                            <DropdownMenuItem key={link.id} asChild>
+                                <Link
+                                    href={link.path}
+                                    className="flex w-full cursor-pointer items-center px-4 py-2 text-sm transition-colors hover:bg-primary hover:text-primary-foreground"
+                                >
+                                    {link.title}
+                                </Link>
+                            </DropdownMenuItem>
                         ))}
                     </DropdownMenuContent>
                 </DropdownMenu>
-            ) : (
-                <Link href={item.path} className="relative">
-                    {item.title}
-                    <span className="absolute bottom-[-8px] left-0 h-[3px] bg-primary transition-all w-full"></span>
-                </Link>
-            )}
-        </li>
-    );
+            </li>
+        )
+    }
+
+    return (
+        <motion.li whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }}>
+            <Link
+                href={item.path || "#"}
+                className="text-sm font-medium transition-colors hover:text-primary focus-visible:text-primary"
+            >
+                {item.title}
+            </Link>
+        </motion.li>
+    )
 }
+

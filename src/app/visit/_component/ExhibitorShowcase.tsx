@@ -1,12 +1,12 @@
 import Image from "next/image"
 
 const exhibitors = [
-    { name: "TechMobility", logo: "/images/techmobility-logo.png", description: "Solutions de mobilité intelligente" },
-    { name: "GreenTransit", logo: "/images/greentransit-logo.png", description: "Transport écologique innovant" },
-    { name: "SmartLogistics", logo: "/images/smartlogistics-logo.png", description: "Optimisation logistique avancée" },
+    { name: "TechMobility", logo: "/images/salon-1.jpg", description: "Solutions de mobilité intelligente" },
+    { name: "GreenTransit", logo: "/images/salon-1.jpg", description: "Transport écologique innovant" },
+    { name: "SmartLogistics", logo: "/images/salon-1.jpg", description: "Optimisation logistique avancée" },
     {
         name: "Future Vehicles",
-        logo: "/images/futurevehicles-logo.png",
+        logo: "/images/salon-1.jpg",
         description: "Véhicules autonomes de nouvelle génération",
     },
 ]

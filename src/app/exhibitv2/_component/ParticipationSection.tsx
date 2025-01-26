@@ -2,7 +2,7 @@ import ParticipationForm from "@/app/exhibit/_component/ParticipationForm"
 
 export default function ParticipationSection() {
   return (
-    <section className="py-20 bg-secondary text-white" id="pre-register">
+    <section className="py-20 bg-gray-100 text-black" id="pre-register">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>

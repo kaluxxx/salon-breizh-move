@@ -3,6 +3,7 @@
 import { motion } from "framer-motion"
 import { Clock, Mail, Newspaper, Store, UserRoundIcon as UserRoundPen } from "lucide-react"
 import Link from "next/link"
+import { useInView } from "react-intersection-observer"
 
 const fastAccessItems = [
   {
@@ -37,29 +38,55 @@ const fastAccessItems = [
   },
 ]
 
-export default function FastAccessSection() {
+function FastAccessItem({
+                          item,
+                          index,
+                          className,
+                        }: { item: (typeof fastAccessItems)[0]; index: number; className?: string }) {
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  })
+
   return (
-      <section className="py-20 bg-background">
+      <motion.div
+          ref={ref}
+          className={className}
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.5, delay: index * 0.1 }}
+      >
+        <Link href={item.link} className="group block h-full">
+          <div className="flex flex-col items-center justify-between h-full p-6 bg-gray-50 border border-gray-200 rounded-lg shadow-sm transition-all duration-300 group-hover:shadow-lg group-hover:bg-primary group-hover:text-primary-foreground">
+            <item.icon className="w-16 h-16 mb-4 text-primary group-hover:text-primary-foreground transition-all duration-300" />
+            <h3 className="text-lg font-semibold text-center mb-2">{item.title}</h3>
+            <p className="text-sm text-center text-gray-600 group-hover:text-primary-foreground/90">{item.description}</p>
+          </div>
+        </Link>
+      </motion.div>
+  )
+}
+
+export default function FastAccessSection() {
+  const [sectionRef, sectionInView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  })
+
+  return (
+      <section ref={sectionRef} className="py-20 bg-background">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Accès Rapide</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+          <motion.h2
+              className="text-3xl font-bold text-center mb-12"
+              initial={{ opacity: 0, y: 20 }}
+              animate={sectionInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.5 }}
+          >
+            Accès Rapide
+          </motion.h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:flex md:flex-wrap md:justify-center">
             {fastAccessItems.map((item, index) => (
-                <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                >
-                  <Link href={item.link} className="group">
-                    <div className="flex flex-col items-center p-6 bg-card rounded-lg shadow-md transition-all duration-300 group-hover:shadow-lg group-hover:bg-primary group-hover:text-primary-foreground">
-                      <item.icon className="w-16 h-16 mb-4 text-primary group-hover:text-primary-foreground transition-colors duration-300" />
-                      <h3 className="text-lg font-semibold text-center mb-2">{item.title}</h3>
-                      <p className="text-sm text-center text-muted-foreground group-hover:text-primary-foreground/80">
-                        {item.description}
-                      </p>
-                    </div>
-                  </Link>
-                </motion.div>
+                <FastAccessItem key={index} item={item} index={index} className="w-full md:w-1/3 lg:w-1/4 xl:w-1/6" />
             ))}
           </div>
         </div>

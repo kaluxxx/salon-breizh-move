@@ -2,7 +2,7 @@ import BadgeRequestForm from "@/app/visit/_component/BadgeRequestForm"
 
 export default function BadgeRequestSection() {
     return (
-        <section className="py-20 bg-primary text-white" id="badge-request">
+        <section className="py-20 bg-gray-100 text-black" id="badge-request">
             <div className="container mx-auto px-4">
                 <div className="grid md:grid-cols-2 gap-12 items-center">
                     <div>

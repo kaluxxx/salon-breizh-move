@@ -2,7 +2,8 @@ import "./globals.css";
 import {ReactNode} from "react";
 import type {Metadata} from "next";
 import {getServerSession} from "next-auth";
-import NavigationBar from "@/app/_navigation/NavigationBar";
+import NavigationBar from "@/components/NavigationBar";
+import Footer from "@/components/Footer";
 import {Toaster} from "@/components/ui/toaster";
 import Providers from "@/provider/providers";
 
@@ -38,6 +39,7 @@ export default async function RootLayout({
             <main className="min-h-[calc(100vh-70px)] flex flex-col justify-start">
                 {children}
             </main>
+            <Footer/>
             <Toaster/>
         </Providers>
         </body>

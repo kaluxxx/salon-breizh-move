@@ -32,10 +32,10 @@ const guideContent = [
 
 export default function ExhibitorGuide() {
     return (
-        <section className="py-20 bg-white">
+        <section className="py-20 bg-secondary text-white">
             <div className="container mx-auto px-4">
                 <h2 className="text-3xl font-bold text-center mb-12">Guide de l'Exposant EUROMOVE</h2>
-                <div className="grid md:grid-cols-3 gap-8">
+                <div className="grid md:grid-cols-3 gap-8 text-black">
                     {guideContent.map((category, idx) => (
                         <div key={idx} className="bg-gray-50 rounded-lg shadow-md p-6">
                             <div className="flex items-center mb-4">

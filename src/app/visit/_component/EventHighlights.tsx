@@ -4,18 +4,18 @@ const highlights = [
     {
         title: "Zone d'Innovation",
         description: "Découvrez les dernières technologies en matière de mobilité durable et intelligente.",
-        image: "/images/innovation-zone.jpg",
+        image: "/images/salon-1.jpg",
     },
     {
         title: "Conférences Inspirantes",
         description: "Assistez à des présentations données par des leaders de l'industrie et des visionnaires.",
-        image: "/images/conferences.jpg",
+        image: "/images/salon-1.jpg",
     },
     {
         title: "Espace Networking",
         description:
             "Connectez-vous avec des professionnels partageant les mêmes idées et créez de nouvelles opportunités.",
-        image: "/images/networking.jpg",
+        image: "/images/salon-1.jpg",
     },
 ]
 

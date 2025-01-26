@@ -7,7 +7,7 @@ export default function IntroSection() {
                 className="w-full bg-cover bg-center bg-no-repeat relative flex flex-col items-center justify-center before:absolute before:inset-0 before:bg-black before:bg-opacity-60"
                 style={{ backgroundImage: "url('/images/salon-1.jpg')" }}>
                 <div className="w-full h-[300px] sm:h-[400px] flex flex-col items-center justify-center gap-4 p-4">
-                    <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-primary font-bold text-center relative z-10">
+                    <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-primary font-bold text-center relative z-10 lg:leading-tight">
                         Participez à EUROMOVE
                     </h1>
                     <p className="text-white text-center text-lg sm:text-xl lg:text-2xl mb-4 relative z-10">

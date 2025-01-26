@@ -32,10 +32,10 @@ const guideContent = [
 
 export default function VisitorGuide() {
     return (
-        <section className="py-20 bg-gray-50">
+        <section className="py-20 bg-primary text-white">
             <div className="container mx-auto px-4">
                 <h2 className="text-3xl font-bold text-center mb-12">Guide du Visiteur EUROMOVE</h2>
-                <div className="grid md:grid-cols-3 gap-8">
+                <div className="grid md:grid-cols-3 gap-8 text-black">
                     {guideContent.map((category, idx) => (
                         <div key={idx} className="bg-white rounded-lg shadow-md p-6">
                             <div className="flex items-center mb-4">

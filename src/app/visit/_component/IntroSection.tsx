@@ -6,7 +6,7 @@ export default function IntroSection() {
             <div className="container mx-auto px-4">
                 <div className="flex flex-col lg:flex-row items-center">
                     <div className="lg:w-1/2 mb-10 lg:mb-0">
-                        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4">
+                        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 lg:leading-tight">
                             Découvrez le Futur de la Mobilité à EUROMOVE
                         </h1>
                         <p className="text-xl mb-8">Immergez-vous dans trois jours d'innovation, de networking et d'inspiration.</p>
