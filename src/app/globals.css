@@ -89,14 +89,3 @@ body {
     --chart-5: 340 75% 55%;
   }
 }
-
-@layer base {
-  body {
-    @apply bg-background text-foreground;
-  }
-}
-
-
-.rich-text ul {
-    @apply list-disc list-inside;
-}
