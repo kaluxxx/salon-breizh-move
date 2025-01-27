@@ -36,7 +36,7 @@ export default function CallToActionSection() {
                     transition={{ duration: 0.5, delay: 0.4 }}
                 >
                     <Button asChild size="lg" variant="secondary">
-                        <Link href="/exhibit">Participer à EUROMOVE</Link>
+                        <Link href="/exhibitv2">Participer à EUROMOVE</Link>
                     </Button>
                 </motion.div>
             </div>
