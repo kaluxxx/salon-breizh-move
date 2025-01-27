@@ -55,7 +55,7 @@ export default function ThematicTracks() {
                     <div className="flex flex-col md:flex-row gap-8">
                         <div className="md:w-1/3">
                             <div className="space-y-4">
-                                {Object.keys(thematicTracks).map((track, index) => (
+                                {Object.keys(thematicTracks).map((track) => (
                                     <motion.button
                                         key={track}
                                         className={`w-full text-left p-4 rounded-lg transition-colors ${
