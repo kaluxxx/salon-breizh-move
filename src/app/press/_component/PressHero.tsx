@@ -15,7 +15,7 @@ export default function PressHero() {
         <section ref={ref} className="relative h-[60vh] flex items-center justify-center overflow-hidden">
             <div
                 className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                style={{backgroundImage: "url('/images/press-hero.jpg')"}}
+                style={{backgroundImage: "url('/images/hero-image.webp')"}}
             />
             <div className="absolute inset-0 bg-black bg-opacity-60"/>
             <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-4">

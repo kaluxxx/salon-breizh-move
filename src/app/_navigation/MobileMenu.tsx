@@ -5,6 +5,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/co
 import { Button } from "@/components/ui/button"
 import { Menu, ChevronDown, ChevronUp } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
 
 interface MenuItem {
@@ -23,8 +24,18 @@ interface MobileMenuProps {
 export default function MobileMenu({ items, accountLink, isOpen, setIsOpen }: MobileMenuProps) {
     const [openSubmenu, setOpenSubmenu] = useState<string | null>(null)
 
-    const toggleSubmenu = (title: string) => {
+    const toggleSubmenu = (e: React.MouseEvent, title: string) => {
+        e.preventDefault()
+        e.stopPropagation()
         setOpenSubmenu(openSubmenu === title ? null : title)
+    }
+
+    const handleMainLinkClick = (e: React.MouseEvent, item: MenuItem) => {
+        if (item.submenu) {
+            toggleSubmenu(e, item.title)
+        } else {
+            setIsOpen(false)
+        }
     }
 
     return (
@@ -36,7 +47,11 @@ export default function MobileMenu({ items, accountLink, isOpen, setIsOpen }: Mo
             </SheetTrigger>
             <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-white">
                 <SheetHeader>
-                    <SheetTitle>Menu</SheetTitle>
+                    <SheetTitle>
+                        <Link href="/" className="flex items-center justify-center my-6" onClick={() => setIsOpen(false)}>
+                            <Image src="/images/logo.png" alt="EUROMOVE Logo" width={150} height={50} />
+                        </Link>
+                    </SheetTitle>
                 </SheetHeader>
                 <nav className="mt-8">
                     <AnimatePresence>
@@ -59,12 +74,12 @@ export default function MobileMenu({ items, accountLink, isOpen, setIsOpen }: Mo
                                             <Link
                                                 href={item.path}
                                                 className="block py-2 text-lg font-medium transition-colors hover:text-primary focus-visible:text-primary"
-                                                onClick={() => !item.submenu && setIsOpen(false)}
+                                                onClick={(e) => handleMainLinkClick(e, item)}
                                             >
                                                 {item.title}
                                             </Link>
                                             {item.submenu && (
-                                                <Button variant="ghost" size="sm" onClick={() => toggleSubmenu(item.title)}>
+                                                <Button variant="ghost" size="sm" onClick={(e) => toggleSubmenu(e, item.title)}>
                                                     {openSubmenu === item.title ? (
                                                         <ChevronUp className="h-4 w-4" />
                                                     ) : (

@@ -7,10 +7,10 @@ import Image from "next/image"
 import { Card, CardContent } from "@/components/ui/card"
 
 const sponsors = [
-  { id: 1, name: "TechMobility", logo: "/images/techmobility-logo.png" },
-  { id: 2, name: "GreenDrive", logo: "/images/greendrive-logo.png" },
-  { id: 3, name: "FutureTrans", logo: "/images/futuretrans-logo.png" },
-  { id: 4, name: "EcoLogistics", logo: "/images/ecologistics-logo.png" },
+  { id: 1, name: "TechMobility", logo: "/images/logo.png" },
+  { id: 2, name: "GreenDrive", logo: "/images/logo.png" },
+  { id: 3, name: "FutureTrans", logo: "/images/logo.png" },
+  { id: 4, name: "EcoLogistics", logo: "/images/logo.png" },
 ]
 
 export default function MainSponsors() {

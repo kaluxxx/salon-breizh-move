@@ -25,8 +25,8 @@ export default function ExhibitorsCTA() {
             Présentez vos innovations en matière de transport et de mobilité à un public international de professionnels
             et de décideurs.
           </p>
-          <Button asChild size="lg">
-            <Link href="/become-exhibitor">Devenir Exposant</Link>
+          <Button asChild size="lg" variant="outline">
+            <Link href="/exhibitv2">Devenir Exposant</Link>
           </Button>
         </motion.div>
       </div>

@@ -10,6 +10,7 @@ import {Button} from "@/components/ui/button"
 import {Role} from "@prisma/client"
 import type {CustomSession} from "@/types/models/Session"
 import {motion} from "framer-motion"
+import Link from "next/link";
 
 const menuItems = [
     {
@@ -89,7 +90,7 @@ export default function Navbar({session}: Readonly<{ session: Session | null }>)
                     <div className="hidden md:flex items-center space-x-6">
                         <DesktopMenu items={menuItems}/>
                         <Button asChild variant="outline">
-                            <a href={accountLinkPath}>{accountLinkTitle}</a>
+                            <Link href={accountLinkPath}>{accountLinkTitle}</Link>
                         </Button>
                     </div>
                     <div className="md:hidden">

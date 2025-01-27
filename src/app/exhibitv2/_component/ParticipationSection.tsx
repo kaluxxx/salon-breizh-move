@@ -11,7 +11,7 @@ export default function ParticipationSection() {
               Profitez de nos formules attractives dès <span className="font-bold">1 928€</span> pour un stand de{" "}
               <span className="font-bold">18m²</span>.
             </p>
-            <div className="bg-white/20 p-4 rounded-lg text-center mb-6">
+            <div className="bg-white p-4 rounded-lg text-center mb-6">
               <p className="text-xl font-semibold">Exposez sur 18m² pour seulement 1 928€</p>
             </div>
             <ul className="space-y-2 mb-6">

@@ -193,6 +193,41 @@
         "updatedAt"
       ]
     },
+    "BadgeRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "company": {
+          "type": "string"
+        },
+        "jobTitle": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "name",
+        "email",
+        "company",
+        "jobTitle",
+        "updatedAt"
+      ]
+    },
     "Person": {
       "type": "object",
       "properties": {
@@ -726,6 +761,9 @@
     },
     "quoteRequest": {
       "$ref": "#/definitions/QuoteRequest"
+    },
+    "badgeRequest": {
+      "$ref": "#/definitions/BadgeRequest"
     },
     "person": {
       "$ref": "#/definitions/Person"
