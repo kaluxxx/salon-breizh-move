@@ -36,7 +36,7 @@ export default function KeyFiguresSection() {
                             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
                         >
-                            <Card className="bg-primary-foreground text-primary h-full">
+                            <Card className="bg-white text-primary h-full">
                                 <CardContent className="flex flex-col items-center justify-center p-6 h-full">
                                     <span className="text-4xl font-bold mb-2">{figure.number}</span>
                                     <span className="text-lg text-center">{figure.label}</span>
