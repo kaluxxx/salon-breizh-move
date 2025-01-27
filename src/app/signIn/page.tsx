@@ -10,7 +10,7 @@ export default function LoginPage() {
             <AnimatedBackground />
             <div className="absolute z-10 inset-0 flex items-center justify-center p-4">
                 <motion.div
-                    className="bg-white bg-opacity-90 rounded-lg shadow-2xl p-8 max-w-md w-full"
+                    className="bg-white rounded-lg shadow-2xl p-8 max-w-md w-full"
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5 }}
