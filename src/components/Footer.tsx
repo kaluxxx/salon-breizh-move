@@ -41,7 +41,7 @@ export default function Footer() {
                         <ul className="space-y-2">
                             {[
                                 { href: "/overview", text: "Le salon" },
-                                { href: "/exhibit", text: "Exposer" },
+                                { href: "/exhibitv2", text: "Exposer" },
                                 { href: "/visit", text: "Visiter" },
                                 { href: "/program", text: "Programme" },
                                 { href: "/press", text: "Espace presse" },
