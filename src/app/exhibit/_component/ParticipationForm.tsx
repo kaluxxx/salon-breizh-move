@@ -34,7 +34,7 @@ export default function ParticipationForm() {
     });
     return (
         <Form {...form}>
-            <form className="flex flex-col gap-4 p-4" onSubmit={form.handleSubmit(handleSubmit)}>
+            <form className="space-y-4" onSubmit={form.handleSubmit(handleSubmit)}>
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                     <FormFieldComponent control={form.control} name="company" label="Entreprise"
                                         placeholder="Nom de l'entreprise" required/>
