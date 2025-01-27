@@ -4,7 +4,6 @@ import { useState, useRef } from "react"
 import { motion, useInView } from "framer-motion"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import { CalendarDays, MapPin } from "lucide-react"
 
 const thematicTracks = {

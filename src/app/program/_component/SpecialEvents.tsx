@@ -4,7 +4,7 @@ import { useRef } from "react"
 import { motion, useInView } from "framer-motion"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { CalendarDays, MapPin, Users } from "lucide-react"
+import { CalendarDays, MapPin } from "lucide-react"
 
 const specialEvents = [
   {
