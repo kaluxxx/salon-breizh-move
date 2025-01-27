@@ -3,10 +3,9 @@
 import { useEffect, useRef } from 'react'
 
 const icons = [
-    '🚗', '🚕', '🚙', '🚌', '🚎', '🏎️', '🚓', '🚑', '🚒', '🚐', '🛻', '🚚', '🚛', 
-    '🚜', '🛵', '🏍️', '🛺', '🚲', '🛴', '🚂', '🚆', '🚊', '🚉', '🚝', '🚞', '🚋',
-    '🚌', '🚍', '🚎', '🚐', '🚑', '🚒', '🚓', '🚔', '🚕', '🚖', '🚗', '🚘', '🚙',
-    '✈️', '🛩️', '🛫', '🛬', '🚁', '🚀', '🛸', '⛵', '🚤', '🛥️', '🛳️', '⛴️', '🚢'
+    '🚗', '🚕', '🚙', '🚌', '🚎', '🚑', '🚒', '🚐', '🚚', '🚛',
+    '🛺','🚞', '🚋', '🚌', '🚍', '🚎', '🚐', '🚑', '🚒', '🚕',
+    '🚖', '🚗', '🚘', '🚙',
 ]
 
 export default function AnimatedBackground() {
@@ -18,7 +17,7 @@ export default function AnimatedBackground() {
 
         const createIcon = () => {
             const icon = document.createElement('div')
-            icon.className = 'absolute text-3xl opacity-20'
+            icon.className = 'absolute text-3xl opacity-80'
             icon.style.left = `${Math.random() * 100}%`
             icon.style.top = `${Math.random() * 100}%`
             icon.textContent = icons[Math.floor(Math.random() * icons.length)]
