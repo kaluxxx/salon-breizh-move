@@ -1,54 +1,77 @@
+"use client"
+
+import { useRef } from "react"
+import { motion, useInView } from "framer-motion"
+import { Check } from "lucide-react"
 import BadgeRequestForm from "@/app/visit/_component/BadgeRequestForm"
 
 export default function BadgeRequestSection() {
+    const ref = useRef(null)
+    const isInView = useInView(ref, { once: true, amount: 0.3 })
+
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                duration: 0.5,
+                staggerChildren: 0.1,
+            },
+        },
+    }
+
+    const itemVariants = {
+        hidden: { opacity: 0, y: 20 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.5 },
+        },
+    }
+
+    const benefits = ["Accès aux 3 jours du salon", "Participation aux conférences", "Accès à l'espace networking"]
+
     return (
-        <section className="py-20 bg-gray-100 text-black" id="badge-request">
+        <section ref={ref} className="py-20 bg-gray-100 text-black" id="badge-request">
             <div className="container mx-auto px-4">
-                <div className="grid md:grid-cols-2 gap-12 items-center">
-                    <div>
-                        <h2 className="text-3xl font-bold mb-6">Obtenez Votre Badge Visiteur Gratuit</h2>
-                        <p className="text-lg mb-4">
+                <motion.div
+                    className="grid md:grid-cols-2 gap-12 items-center"
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate={isInView ? "visible" : "hidden"}
+                >
+                    <motion.div variants={itemVariants}>
+                        <motion.h2
+                            className="text-3xl font-bold mb-6"
+                            initial={{ opacity: 0, y: -20 }}
+                            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
+                            transition={{ duration: 0.5 }}
+                        >
+                            Obtenez Votre Badge Visiteur Gratuit
+                        </motion.h2>
+                        <motion.p className="text-lg mb-4" variants={itemVariants}>
                             Ne manquez pas cette opportunité unique de découvrir les innovations qui façonneront l'avenir de la
                             mobilité.
-                        </p>
-                        <ul className="space-y-2 mb-6">
-                            <li className="flex items-center">
-                                <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                    <path
-                                        fillRule="evenodd"
-                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                        clipRule="evenodd"
-                                    />
-                                </svg>
-                                Accès aux 3 jours du salon
-                            </li>
-                            <li className="flex items-center">
-                                <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                    <path
-                                        fillRule="evenodd"
-                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                        clipRule="evenodd"
-                                    />
-                                </svg>
-                                Participation aux conférences
-                            </li>
-                            <li className="flex items-center">
-                                <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                    <path
-                                        fillRule="evenodd"
-                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                        clipRule="evenodd"
-                                    />
-                                </svg>
-                                Accès à l'espace networking
-                            </li>
-                        </ul>
-                    </div>
-                    <div className="bg-white text-gray-800 p-8 rounded-lg shadow-lg">
+                        </motion.p>
+                        <motion.ul
+                            className="space-y-2 mb-6"
+                            variants={containerVariants}
+                            initial="hidden"
+                            animate={isInView ? "visible" : "hidden"}
+                        >
+                            {benefits.map((benefit, index) => (
+                                <motion.li key={index} className="flex items-center" variants={itemVariants}>
+                                    <Check className="w-5 h-5 mr-2 text-green-500" />
+                                    {benefit}
+                                </motion.li>
+                            ))}
+                        </motion.ul>
+                    </motion.div>
+                    <motion.div className="bg-white text-gray-800 p-8 rounded-lg shadow-lg" variants={itemVariants}>
                         <h3 className="text-2xl font-bold mb-4">Demandez votre badge</h3>
                         <BadgeRequestForm />
-                    </div>
-                </div>
+                    </motion.div>
+                </motion.div>
             </div>
         </section>
     )
