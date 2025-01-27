@@ -9,8 +9,8 @@ export type ProtectedRoutes = {
 };
 
 export const protectedRoutes: ProtectedRoutes = {
-    "/admin": [Role.ADMIN, Role.MODERATOR],
-    "/admin/*": [Role.ADMIN, Role.MODERATOR],
+    // "/admin": [Role.ADMIN, Role.MODERATOR],
+    // "/admin/*": [Role.ADMIN, Role.MODERATOR],
 };
 
 export default async function middleware(req: NextRequest) {

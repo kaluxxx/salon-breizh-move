@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import {useInView} from "react-intersection-observer";
+import Image from "next/image";
 
 export default function HeroSection() {
     const [ref, inView] = useInView({
